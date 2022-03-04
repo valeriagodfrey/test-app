@@ -30,8 +30,7 @@ const Input = styled.input<{ error?: string }>`
   border: 1px solid;
   border-color: ${({ error }) => (error ? "#F5222D" : "#D9D9D9")};
   border-radius: 2px;
-  box-shadow: ${({ error }) =>
-    error ? "0px 0px 4px rgba(245, 34, 45, 0.5)" : "transparent"};
+  box-shadow: ${({ error }) => (error ? "0px 0px 4px rgba(245, 34, 45, 0.5)" : "transparent")};
   margin-bottom: 6px;
   ::placeholder {
     color: #bfbfbf;

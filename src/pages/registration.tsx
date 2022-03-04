@@ -50,9 +50,7 @@ export const Registration = () => {
           <CustomInput
             placeholder="Отчество"
             {...register("patronymic", { required: true })}
-            error={
-              errors.patronymic?.type === "required" ? "Обязательное поле" : ""
-            }
+            error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
           />
         </Box>
         <CustomInput
@@ -67,9 +65,7 @@ export const Registration = () => {
         <CustomInput
           placeholder="Пароль"
           {...register("password2", { required: true })}
-          error={
-            errors.password2?.type === "required" ? "Пароли не совпадают" : ""
-          }
+          error={errors.password2?.type === "required" ? "Пароли не совпадают" : ""}
         />
         <Label>Дата рождения</Label>
         <Box type="birthday">
@@ -92,11 +88,7 @@ export const Registration = () => {
         <CustomInput
           placeholder="Телефон"
           {...register("number", { required: true })}
-          error={
-            errors.number?.type === "required"
-              ? "Такого номера не существует"
-              : ""
-          }
+          error={errors.number?.type === "required" ? "Такого номера не существует" : ""}
         />
         <CustomInput
           placeholder="Пол"
@@ -157,7 +149,6 @@ const Label = styled.div`
 
 const Box = styled.div<{ type?: "fio" | "birthday" }>`
   display: grid;
-  grid-template-columns: ${({ type }) =>
-    type === "fio" ? " 1fr 1fr" : "1fr 1fr 1fr"};
+  grid-template-columns: ${({ type }) => (type === "fio" ? " 1fr 1fr" : "1fr 1fr 1fr")};
   grid-gap: 24px;
 `;
