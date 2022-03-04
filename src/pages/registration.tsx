@@ -1,8 +1,12 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Button } from "../ui/Button";
-import { CustomInput } from "../ui/CustomInput";
+
+import { Button } from "../ui/button/Button";
+import { Checkbox } from "../ui/checkbox/Checkbox";
+import { CustomInput } from "../ui/input/Input";
+import { IOption, months, years } from "../ui/select/data";
+import { CustomSelect } from "../ui/select/Select";
 
 interface RegistrProps {
   email: string;
@@ -16,22 +20,27 @@ interface RegistrProps {
   year: number;
   number: number;
   gender: string;
+  check: boolean;
 }
 export const Registration = () => {
   const {
     register,
     formState: { errors },
+    control,
+    getValues,
     handleSubmit,
   } = useForm<RegistrProps>();
 
+  const day = getValues("day");
+  // eslint-disable-next-line no-console
   const onSubmit = (data: RegistrProps) => console.log(data);
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>
-
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Caption>Зарегистрируйтесь</Caption>
         <CustomInput
+          type="email"
           placeholder="Email"
           {...register("email", { required: true })}
           error={errors.email?.type === "required" ? "Обязательное поле" : ""}
@@ -54,6 +63,7 @@ export const Registration = () => {
           />
         </Box>
         <CustomInput
+          type="password"
           placeholder="Пароль"
           {...register("password", { required: true })}
           error={
@@ -63,37 +73,95 @@ export const Registration = () => {
           }
         />
         <CustomInput
+          type="password"
           placeholder="Пароль"
-          {...register("password2", { required: true })}
-          error={errors.password2?.type === "required" ? "Пароли не совпадают" : ""}
+          {...register("password2", {
+            required: true,
+            validate: () => getValues("password2") === getValues("password"),
+          })}
+          error={
+            errors.password2?.type === "required" || errors.password2?.type === "validate"
+              ? "Пароли не совпадают"
+              : ""
+          }
         />
         <Label>Дата рождения</Label>
         <Box type="birthday">
           <CustomInput
             placeholder="День"
             {...register("day", { required: true })}
-            error={errors.day?.type === "required" ? "Обязательное поле" : ""}
+            error={
+              errors.day?.type === "required"
+                ? "Обязательное поле"
+                : Number(day) > 32 || Number(day) < 1
+                ? "Введите верное число"
+                : ""
+            }
           />
-          <CustomInput
-            placeholder="Месяц"
-            {...register("month", { required: true })}
-            error={errors.month?.type === "required" ? "Обязательное поле" : ""}
+          <Controller
+            name="month"
+            control={control}
+            rules={{ required: true }}
+            render={(props) => (
+              <CustomSelect
+                placeholder="Месяц"
+                options={months}
+                value={(months || []).filter((i) => i.value === props.field.value)[0]}
+                onChange={(value) => props.field.onChange((value as IOption).value)}
+                error={
+                  errors.month?.type === "required" && props.field.value ? "Обязательное поле" : ""
+                }
+              />
+            )}
           />
-          <CustomInput
-            placeholder="Год"
-            {...register("year", { required: true })}
-            error={errors.year?.type === "required" ? "Обязательное поле" : ""}
+          <Controller
+            name="year"
+            control={control}
+            rules={{ required: true }}
+            render={(props) => (
+              <CustomSelect
+                placeholder="Год"
+                options={years}
+                value={(years || []).filter((i) => i.value === props.field.value)[0]}
+                onChange={(value) => props.field.onChange((value as IOption).value)}
+                error={
+                  errors.year?.type === "required" && props.field.value ? "Обязательное поле" : ""
+                }
+              />
+            )}
           />
         </Box>
-        <CustomInput
-          placeholder="Телефон"
-          {...register("number", { required: true })}
-          error={errors.number?.type === "required" ? "Такого номера не существует" : ""}
-        />
-        <CustomInput
-          placeholder="Пол"
-          {...register("gender", { required: true })}
-          error={errors.gender?.type === "required" ? "Обязательное поле" : ""}
+        <Box>
+          <CustomInput
+            placeholder="Телефон"
+            {...register("number", { required: true })}
+            error={errors.number?.type === "required" ? "Такого номера не существует" : ""}
+          />
+          <CustomInput
+            placeholder="Пол"
+            {...register("gender", { required: true })}
+            error={errors.gender?.type === "required" ? "Обязательное поле" : ""}
+          />
+        </Box>
+        <Controller
+          name="check"
+          control={control}
+          render={(props) => (
+            <Checkbox
+              {...register("check", { required: true })}
+              {...props}
+              checked={props.field.value}
+              onChange={(value) => {
+                value = !props.field.value;
+                props.field.onChange(value);
+              }}
+              error={
+                errors.check?.type === "required"
+                  ? "Для регистрации необходимо принять условия соглашения"
+                  : ""
+              }
+            />
+          )}
         />
         <Button>Создать аккаунт</Button>
       </Form>
@@ -110,6 +178,7 @@ const WrapperContainer = styled.div`
   width: 100%;
   background-color: #f0f2f5;
 `;
+
 const Title = styled.div`
   text-align: center;
   font-size: 56px;
@@ -149,6 +218,7 @@ const Label = styled.div`
 
 const Box = styled.div<{ type?: "fio" | "birthday" }>`
   display: grid;
-  grid-template-columns: ${({ type }) => (type === "fio" ? " 1fr 1fr" : "1fr 1fr 1fr")};
+  grid-template-columns: ${({ type }) =>
+    type === "fio" ? " 1fr 1fr" : type === "birthday" ? "170px 1fr 155px" : "349px 1fr"};
   grid-gap: 24px;
 `;

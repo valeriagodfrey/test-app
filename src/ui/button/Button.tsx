@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Button: FC = ({ children }) => {
   return <Container>{children}</Container>;
 };
-const Container = styled.div`
+const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,4 +17,6 @@ const Container = styled.div`
   display: flex;
   border-radius: 2px;
   padding: 8px 0px;
+  cursor: pointer;
+  border: none;
 `;

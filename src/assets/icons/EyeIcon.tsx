@@ -1,12 +1,12 @@
-import React, { HTMLInputTypeAttribute } from "react";
+import React from "react";
 
 interface Props {
-  type: HTMLInputTypeAttribute | undefined;
+  type: React.HTMLInputTypeAttribute | undefined;
 }
 export const EyeIcon = ({ type }: Props) => {
   return (
     <div>
-      {type !== "password" ? (
+      {type === "password" ? (
         <svg
           width="18"
           height="18"
@@ -23,7 +23,9 @@ export const EyeIcon = ({ type }: Props) => {
             fill="#595959"
           />
         </svg>
-      ) : undefined}
+      ) : (
+        ""
+      )}
     </div>
   );
 };
