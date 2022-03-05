@@ -97,6 +97,7 @@ const Main = styled.div`
   padding-top: 64px;
   display: grid;
   grid-template-columns: 493px 1fr;
+  height: calc(100vh - 64px);
 `;
 
 const Sidebar = styled.div`
@@ -151,7 +152,6 @@ const SignInContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 24px;
-  margin-top: 185px;
 `;
 
 const SignInForm = styled.form`
