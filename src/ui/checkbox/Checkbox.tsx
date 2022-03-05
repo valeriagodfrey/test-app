@@ -1,63 +1,54 @@
+import { FC } from "react";
 import styled from "styled-components";
 
 import { CheckIcon } from "../../assets/icons/CheckIcon";
 import { CustomError } from "../error/Error";
-import { ILink } from "../link/Link";
 
 interface Props {
   error?: string;
   checked?: boolean;
   onChange: (value: boolean) => void;
 }
-export const Checkbox = ({ error, checked, onChange }: Props) => {
+export const Checkbox: FC<Props> = ({ error, checked, onChange, children }) => {
   return (
     <Container>
       <CheckboxContainer>
-        <CustomCheckbox checked={checked} onClick={(value) => onChange(!value)}>
-          {checked ? (
-            <Icon>
-              <CheckIcon />
-            </Icon>
-          ) : (
-            ""
-          )}
+        <CustomCheckbox checked={checked} onClick={(value) => onChange(!value)} error={error}>
+          {checked ? <CheckIcon /> : ""}
         </CustomCheckbox>
-        <Agreement>
-          Я согласен с <ILink to="/agreement"> пользовательским соглашением</ILink> и
-          <ILink to="/politics"> политикой обработки персональных данных пользователей</ILink>
-        </Agreement>
+        <Agreement>{children}</Agreement>
       </CheckboxContainer>
+
       <ErrorContainer>
         <CustomError error={error} />
       </ErrorContainer>
     </Container>
   );
 };
+
 const Container = styled.div`
-  width: auto;
-  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
 `;
 
 const CheckboxContainer = styled.div`
-  width: 100%;
+  cursor: pointer;
   display: flex;
+  align-items: flex-start;
 `;
 
-const CustomCheckbox = styled.div<{ checked?: boolean }>`
-  position: relative;
+const CustomCheckbox = styled.div<{ error?: string; checked?: boolean }>`
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 3px;
-  height: 16px;
-  width: 19px;
   box-sizing: border-box;
+  position: relative;
+  align-items: center;
   border-radius: 2px;
-  border: ${({ checked }) => (checked ? "1px solid transparent" : "1px solid #d9d9d9")};
   margin-right: 8px;
-  cursor: pointer;
+  border: ${({ checked }) => (checked ? "1px solid #1890ff" : " 1px solid #d9d9d9")};
+  margin-top: 4px;
 `;
 
 const Agreement = styled.div`
@@ -66,11 +57,6 @@ const Agreement = styled.div`
   justify-content: center;
 `;
 
-const Icon = styled.div`
-  position: absolute;
-  height: 15px;
-  bottom: 1px;
-`;
 const ErrorContainer = styled.div`
   margin-left: 24px;
 `;

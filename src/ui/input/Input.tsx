@@ -6,6 +6,8 @@ import { CustomError } from "../error/Error";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  label?: string;
+  withLabel?: boolean;
 }
 export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref) => {
   const [type, setType] = useState(params.type);
@@ -16,6 +18,7 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
   return (
     <Container>
       <InputContainer>
+        {params.withLabel ? <Label>{params.label}</Label> : undefined}
         <Input {...params} type={type} ref={ref} error={params.error} />
         {type === "password" && (
           <Icon onClick={changeType}>
@@ -66,4 +69,9 @@ const Icon = styled.div`
   display: flex;
   right: 11px;
   cursor: pointer;
+`;
+
+const Label = styled.div`
+  font-size: 14px;
+  line-height: 22px;
 `;

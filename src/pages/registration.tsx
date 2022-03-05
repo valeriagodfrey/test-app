@@ -2,10 +2,12 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import { media } from "../assets/media";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { CustomInput } from "../ui/input/Input";
-import { IOption, months, years } from "../ui/select/data";
+import { ILink } from "../ui/link/Link";
+import { gender, IOption, months, years } from "../ui/select/data";
 import { CustomSelect } from "../ui/select/Select";
 
 interface RegistrProps {
@@ -32,6 +34,7 @@ export const Registration = () => {
   } = useForm<RegistrProps>();
 
   const day = getValues("day");
+  const phoneNumber = getValues("number");
   // eslint-disable-next-line no-console
   const onSubmit = (data: RegistrProps) => console.log(data);
   return (
@@ -85,7 +88,7 @@ export const Registration = () => {
               : ""
           }
         />
-        <Label>Дата рождения</Label>
+        <Label position="left">Дата рождения</Label>
         <Box type="birthday">
           <CustomInput
             placeholder="День"
@@ -108,9 +111,7 @@ export const Registration = () => {
                 options={months}
                 value={(months || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={
-                  errors.month?.type === "required" && props.field.value ? "Обязательное поле" : ""
-                }
+                error={errors.month && errors.month?.type === "required" ? "Обязательное поле" : ""}
               />
             )}
           />
@@ -124,23 +125,43 @@ export const Registration = () => {
                 options={years}
                 value={(years || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={
-                  errors.year?.type === "required" && props.field.value ? "Обязательное поле" : ""
-                }
+                error={errors.month && errors.year?.type === "required" ? "Обязательное поле" : ""}
               />
             )}
           />
         </Box>
         <Box>
           <CustomInput
+            type="tel"
             placeholder="Телефон"
-            {...register("number", { required: true })}
-            error={errors.number?.type === "required" ? "Такого номера не существует" : ""}
+            {...register("number", {
+              required: true,
+              maxLength: 10,
+              minLength: 10,
+            })}
+            error={
+              (errors.number && errors.number?.type === "required") ||
+              (errors.number && String(phoneNumber).length > 10) ||
+              (errors.number && String(phoneNumber).length < 10)
+                ? "Такого номера не существует"
+                : ""
+            }
           />
-          <CustomInput
-            placeholder="Пол"
-            {...register("gender", { required: true })}
-            error={errors.gender?.type === "required" ? "Обязательное поле" : ""}
+          <Controller
+            name="gender"
+            control={control}
+            rules={{ required: true }}
+            render={(props) => (
+              <CustomSelect
+                placeholder="Пол"
+                options={gender}
+                value={(gender || []).filter((i) => i.value === props.field.value)[0]}
+                onChange={(value) => props.field.onChange((value as IOption).value)}
+                error={
+                  errors.gender && errors.gender.type === "required" ? "Обязательное поле" : ""
+                }
+              />
+            )}
           />
         </Box>
         <Controller
@@ -160,10 +181,16 @@ export const Registration = () => {
                   ? "Для регистрации необходимо принять условия соглашения"
                   : ""
               }
-            />
+            >
+              Я согласен с <ILink to="/agreement"> пользовательским соглашением</ILink> и
+              <ILink to="/politics"> политикой обработки персональных данных пользователей</ILink>
+            </Checkbox>
           )}
         />
         <Button>Создать аккаунт</Button>
+        <Label position="center">
+          Уже есть аккаунт? <ILink to="/authorization">Войдите</ILink>
+        </Label>
       </Form>
     </WrapperContainer>
   );
@@ -201,24 +228,29 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px;
-  width: 100%;
+  padding: 30px;
   max-width: 600px;
   background-color: #ffffff;
   border-radius: 2px;
+  ${media.desktop} {
+    padding: 24px;
+  }
 `;
 
-const Label = styled.div`
+const Label = styled.div<{ position?: "left" | "center" }>`
   font-size: 14px;
   line-height: 22px;
-  text-align: left;
+  text-align: ${({ position }) => (position === "left" ? "left" : "center")};
   margin-bottom: 8px;
   color: #595959;
 `;
 
 const Box = styled.div<{ type?: "fio" | "birthday" }>`
   display: grid;
-  grid-template-columns: ${({ type }) =>
-    type === "fio" ? " 1fr 1fr" : type === "birthday" ? "170px 1fr 155px" : "349px 1fr"};
-  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  ${media.desktop} {
+    grid-template-columns: ${({ type }) =>
+      type === "fio" ? " 1fr 1fr" : type === "birthday" ? "170px 1fr 155px" : "349px 1fr"};
+    grid-gap: 24px;
+  }
 `;

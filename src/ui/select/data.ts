@@ -24,3 +24,8 @@ export const months: IOption[] = [
   { value: "Ноябрь", label: "Ноябрь" },
   { value: "Декабрь", label: "Декабрь" },
 ];
+
+export const gender: IOption[] = [
+  { value: "Мужчина", label: "Мужчина" },
+  { value: "Женщина", label: "Женщина" },
+];

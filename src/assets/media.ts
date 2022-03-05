@@ -6,10 +6,6 @@ export const mediaWidths = {
 
 export const media = {
   desktop: `@media screen and (min-width: ${mediaWidths.desktop + 1}px)`,
-  largeDesktop: `@media screen and (min-width: ${
-    mediaWidths.largeDesktop + 1
-  }px)`,
-  extraLargeDesktop: `@media screen and (min-width: ${
-    mediaWidths.extraLargeDesktop + 1
-  }px)`,
+  largeDesktop: `@media screen and (min-width: ${mediaWidths.largeDesktop + 1}px)`,
+  extraLargeDesktop: `@media screen and (min-width: ${mediaWidths.extraLargeDesktop + 1}px)`,
 };

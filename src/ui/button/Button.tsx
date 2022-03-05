@@ -16,7 +16,7 @@ const Container = styled.button`
   color: #ffffff;
   display: flex;
   border-radius: 2px;
-  padding: 8px 0px;
+  padding: 8px 16px;
   cursor: pointer;
   border: none;
 `;
