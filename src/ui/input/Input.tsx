@@ -61,6 +61,9 @@ const Input = styled.input<{ error?: string }>`
   ::placeholder {
     color: #bfbfbf;
   }
+  :focus {
+    border: 0;
+  }
 `;
 
 const Icon = styled.div<{ withLabel?: boolean }>`

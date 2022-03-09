@@ -10,13 +10,13 @@ import styled from "styled-components";
 
 import { SelectArrowIcon } from "../../assets/icons/SelectArrowIcon";
 import { CustomError } from "../error/Error";
-import { IOption, IOptions } from "./data";
+import { IOption, months } from "./data";
 
 interface Props {
   placeholder?: string;
   error?: string;
   type?: "lang" | "default";
-  options?: typeof IOptions;
+  options?: typeof months;
   onChange?: (
     newValue: SingleValue<IOption> | MultiValue<IOption>,
     actionMeta: ActionMeta<IOption>,
@@ -35,7 +35,7 @@ export const CustomSelect = ({ placeholder, type = "default", error, options, ..
           isSearchable
           menuIsOpen={click}
           placeholder={placeholder}
-          styles={error ? StylesError : type !== "default" ? StylesLang : Styles}
+          styles={error ? StylesError : type === "lang" ? StylesLang : Styles}
           closeMenuOnSelect
           options={options}
           onChange={rest.onChange}
@@ -76,9 +76,9 @@ const Icon = styled.div`
 `;
 
 const Styles: StylesConfig<IOption> = {
-  control: (styles) => ({
+  control: (styles, { isFocused }) => ({
     ...styles,
-    border: `1px solid #D9D9D9 `,
+    border: isFocused ? 0 : `1px solid #D9D9D9 `,
     borderRadius: "2px",
     cursor: "pointer",
     padding: `1px`,
@@ -113,6 +113,7 @@ const StylesError: StylesConfig<IOption> = {
   control: (styles) => ({
     ...styles,
     border: `1px solid #F5222D`,
+    boxShadow: `0px 0px 4px rgba(245, 34, 45, 0.5)`,
     borderRadius: "2px",
     cursor: "pointer",
     padding: `1px`,
@@ -120,7 +121,7 @@ const StylesError: StylesConfig<IOption> = {
     display: "flex",
     ":hover": {
       ...styles[":hover"],
-      color: "#F5222D ",
+      borderColor: "#F5222D ",
     },
   }),
   indicatorSeparator: (styles) => ({
@@ -146,9 +147,10 @@ const StylesError: StylesConfig<IOption> = {
 const StylesLang: StylesConfig<IOption> = {
   control: (styles) => ({
     ...styles,
-    border: `1px solid #D9D9D9 `,
-    borderRadius: "2px",
+    border: "none",
     cursor: "pointer",
+    height: "24px",
+    color: "#1890ff",
     padding: `1px`,
     alignItems: "center",
     display: "flex",

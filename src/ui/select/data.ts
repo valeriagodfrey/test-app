@@ -3,8 +3,6 @@ export interface IOption {
   label: string;
 }
 
-export const IOptions: IOption[] = [];
-
 export const years: IOption[] = [];
 for (let i = 2022; i > 1900; i = i - 1) {
   years.push({ value: i, label: `${i}` });
@@ -28,4 +26,9 @@ export const months: IOption[] = [
 export const gender: IOption[] = [
   { value: "Мужчина", label: "Мужчина" },
   { value: "Женщина", label: "Женщина" },
+];
+
+export const languages: IOption[] = [
+  { value: "ru", label: "Русский" },
+  { value: "en", label: "English" },
 ];

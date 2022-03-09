@@ -1,5 +1,6 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import signIn from "../assets/images/signIn.png";
@@ -24,6 +25,7 @@ export const Authorization = () => {
   } = useForm<AuthProps>();
   // eslint-disable-next-line no-console
   const onSubmit = (data: AuthProps) => console.log(data);
+  const { t } = useTranslation();
   return (
     <Container>
       <Header />
@@ -31,7 +33,7 @@ export const Authorization = () => {
         <Sidebar>
           <Box>
             <Label>Staff Pro</Label>
-            <Title place="sidebar">HR processes are automated, welcome back!</Title>
+            <Title place="sidebar">{t("title")}</Title>
           </Box>
           <Img src={signIn} alt="signIn" />
         </Sidebar>
@@ -76,7 +78,6 @@ export const Authorization = () => {
                     </Checkbox>
                   )}
                 />
-
                 <ILink to="/forgot-password">Забыли пароль?</ILink>
               </Line>
               <Button>Войти</Button>
@@ -161,5 +162,4 @@ const SignInForm = styled.form`
 const Line = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
 `;

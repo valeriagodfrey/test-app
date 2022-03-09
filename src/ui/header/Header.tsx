@@ -1,23 +1,22 @@
-import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { LangDown } from "../../assets/icons/LangDown";
 import { LangIcon } from "../../assets/icons/LangIcon";
 import { ILink } from "../link/Link";
-import { CustomSelect } from "../select/Select";
+import { LangSelect } from "../select/LangSelect";
 
 export const Header = () => {
+  const { t } = useTranslation();
   return (
     <Container>
       <HeaderLine>
         <LangIcon />
         <Label>
-          Сменить язык на <ILink to="/authorization">english</ILink>?
+          {t("Сменить язык на ")}
+          <ILink to="/authorization">english</ILink>?
         </Label>
         <Delimiter />
-        <CustomSelect type="lang" />
-
-        <LangDown />
+        <LangSelect />
       </HeaderLine>
     </Container>
   );

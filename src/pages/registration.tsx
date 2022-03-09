@@ -1,5 +1,6 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { media } from "../assets/media";
@@ -25,6 +26,7 @@ interface RegistrProps {
   check: boolean;
 }
 export const Registration = () => {
+  const dispatch = useDispatch();
   const {
     register,
     formState: { errors },
@@ -36,7 +38,8 @@ export const Registration = () => {
   const day = getValues("day");
   const phoneNumber = getValues("number");
   // eslint-disable-next-line no-console
-  const onSubmit = (data: RegistrProps) => console.log(data);
+  const onSubmit = (data: RegistrProps) => dispatch(data);
+
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>
