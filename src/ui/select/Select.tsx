@@ -35,7 +35,7 @@ export const CustomSelect = ({ placeholder, type = "default", error, options, ..
           isSearchable
           menuIsOpen={click}
           placeholder={placeholder}
-          styles={type === "default" ? Styles : StylesLang}
+          styles={error ? StylesError : type !== "default" ? StylesLang : Styles}
           closeMenuOnSelect
           options={options}
           onChange={rest.onChange}
@@ -87,6 +87,40 @@ const Styles: StylesConfig<IOption> = {
     ":hover": {
       ...styles[":hover"],
       borderColor: "#D9D9D9",
+    },
+  }),
+  indicatorSeparator: (styles) => ({
+    ...styles,
+    backgroundColor: "transparent",
+  }),
+  placeholder: (styles) => ({
+    ...styles,
+    marginBottom: "2px",
+    color: "#bfbfbf",
+  }),
+  dropdownIndicator: (styles) => ({
+    ...styles,
+    color: "transparent",
+    justifyContent: "center",
+    ":hover": {
+      ...styles[":hover"],
+      color: "transparent",
+    },
+  }),
+};
+
+const StylesError: StylesConfig<IOption> = {
+  control: (styles) => ({
+    ...styles,
+    border: `1px solid #F5222D`,
+    borderRadius: "2px",
+    cursor: "pointer",
+    padding: `1px`,
+    alignItems: "center",
+    display: "flex",
+    ":hover": {
+      ...styles[":hover"],
+      color: "#F5222D ",
     },
   }),
   indicatorSeparator: (styles) => ({

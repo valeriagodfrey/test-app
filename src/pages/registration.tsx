@@ -125,7 +125,7 @@ export const Registration = () => {
                 options={years}
                 value={(years || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={errors.month && errors.year?.type === "required" ? "Обязательное поле" : ""}
+                error={errors.year && errors.year?.type === "required" ? "Обязательное поле" : ""}
               />
             )}
           />

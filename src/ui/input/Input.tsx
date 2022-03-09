@@ -21,7 +21,7 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
         {params.withLabel ? <Label>{params.label}</Label> : undefined}
         <Input {...params} type={type} ref={ref} error={params.error} />
         {type === "password" && (
-          <Icon onClick={changeType}>
+          <Icon withLabel={params.withLabel} onClick={changeType}>
             <EyeIcon type={type} />
           </Icon>
         )}
@@ -63,15 +63,18 @@ const Input = styled.input<{ error?: string }>`
   }
 `;
 
-const Icon = styled.div`
+const Icon = styled.div<{ withLabel?: boolean }>`
   width: 18px;
   position: absolute;
   display: flex;
   right: 11px;
+  margin-bottom: ${({ withLabel }) => (withLabel ? `0px` : `6px`)};
+  margin-top: ${({ withLabel }) => (withLabel ? `18px` : `0px`)};
   cursor: pointer;
 `;
 
 const Label = styled.div`
   font-size: 14px;
   line-height: 22px;
+  margin-bottom: 2px;
 `;

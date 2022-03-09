@@ -1,11 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 
 interface Props {
   type: React.HTMLInputTypeAttribute | undefined;
 }
 export const EyeIcon = ({ type }: Props) => {
   return (
-    <div>
+    <Container>
       {type === "password" ? (
         <svg
           width="18"
@@ -26,6 +27,10 @@ export const EyeIcon = ({ type }: Props) => {
       ) : (
         ""
       )}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  height: 18px;
+`;

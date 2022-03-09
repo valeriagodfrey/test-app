@@ -58,5 +58,5 @@ const Agreement = styled.div`
 `;
 
 const ErrorContainer = styled.div`
-  margin-left: 24px;
+  margin: 6px 0px 24px 21px;
 `;
