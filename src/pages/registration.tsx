@@ -1,7 +1,6 @@
-import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { media } from "../assets/media";
@@ -27,8 +26,10 @@ export interface RegisterProps {
   gender: string;
   check: boolean;
 }
+
 export const Registration = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -40,8 +41,12 @@ export const Registration = () => {
   const day = getValues("day");
   const phoneNumber = getValues("number");
 
-  const onSubmit = (data: RegisterProps) => dispatch(signUp(data));
-
+  const onSubmit = (data: RegisterProps) => {
+    dispatch(signUp(data));
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+  };
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>

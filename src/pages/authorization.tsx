@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import signIn from "../assets/images/signIn.png";
+import signInImage from "../assets/images/signIn.png";
+import { RootState } from "../core/redux/store";
+import { signIn } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";
@@ -17,14 +21,28 @@ export interface AuthProps {
 }
 
 export const Authorization = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     control,
     handleSubmit,
   } = useForm<AuthProps>();
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: AuthProps) => console.log(data);
+
+  const handleAuth = (user: AuthProps) => {
+    if (user.email === "test@gmail.com" && user.password === "12345") {
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    } else alert("Пользователь не найден!");
+  };
+
+  const onSubmit = (data: AuthProps) => {
+    dispatch(signIn(data));
+    handleAuth(data);
+  };
+
   const { t } = useTranslation();
   return (
     <Container>
@@ -35,7 +53,7 @@ export const Authorization = () => {
             <Label>Staff Pro</Label>
             <Title place="sidebar">{t("title")}</Title>
           </Box>
-          <Img src={signIn} alt="signIn" />
+          <Img src={signInImage} alt="signIn" />
         </Sidebar>
         <Content>
           <HeaderLine>
