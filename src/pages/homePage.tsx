@@ -1,5 +1,22 @@
 import React from "react";
+import styled from "styled-components";
+
+import { PageHeader } from "../ui/header/PageHeader";
+import { Sidebar } from "../ui/sidebar/Sidebar";
 
 export const HomePage = () => {
-  return <div>Hello</div>;
+  return (
+    <Container>
+      <Sidebar />
+      <ContentContainer>
+        <PageHeader />
+        <Content />
+      </ContentContainer>
+    </Container>
+  );
 };
+const Container = styled.div``;
+
+const ContentContainer = styled.div``;
+
+const Content = styled.div``;

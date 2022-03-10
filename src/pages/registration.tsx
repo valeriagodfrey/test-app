@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { media } from "../assets/media";
@@ -78,9 +78,14 @@ export const Registration = () => {
         <CustomInput
           type="password"
           placeholder="Пароль"
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: true,
+            validate: () => getValues("password").length >= 8 && getValues("password").length <= 64,
+          })}
           error={
             errors.password?.type === "required"
+              ? "Обязательное поле"
+              : errors.password?.type === "validate"
               ? "Пароль должен содержать от 8 до 64 символов"
               : ""
           }
@@ -90,10 +95,13 @@ export const Registration = () => {
           placeholder="Пароль"
           {...register("password2", {
             required: true,
+
             validate: () => getValues("password2") === getValues("password"),
           })}
           error={
-            errors.password2?.type === "required" || errors.password2?.type === "validate"
+            errors.password2?.type === "required"
+              ? "Обязательное поле"
+              : errors.password2?.type === "validate"
               ? "Пароли не совпадают"
               : ""
           }
@@ -104,9 +112,9 @@ export const Registration = () => {
             placeholder="День"
             {...register("day", { required: true })}
             error={
-              errors.day?.type === "required"
+              errors.number && errors.day?.type === "required"
                 ? "Обязательное поле"
-                : Number(day) > 32 || Number(day) < 1
+                : errors.number && (Number(day) >= 32 || Number(day) < 1)
                 ? "Введите верное число"
                 : ""
             }
@@ -150,9 +158,10 @@ export const Registration = () => {
               minLength: 10,
             })}
             error={
-              (errors.number && errors.number?.type === "required") ||
-              (errors.number && String(phoneNumber).length > 10) ||
-              (errors.number && String(phoneNumber).length < 10)
+              errors.number &&
+              (errors.number?.type === "required" ||
+                String(phoneNumber).length > 10 ||
+                String(phoneNumber).length < 10)
                 ? "Такого номера не существует"
                 : ""
             }

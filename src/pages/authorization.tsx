@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
-import { RootState } from "../core/redux/store";
 import { signIn } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
@@ -15,8 +14,8 @@ import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
 
 export interface AuthProps {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
   check?: boolean;
 }
 
@@ -27,15 +26,16 @@ export const Authorization = () => {
     register,
     formState: { errors },
     control,
+    getValues,
     handleSubmit,
   } = useForm<AuthProps>();
 
   const handleAuth = (user: AuthProps) => {
-    if (user.email === "test@gmail.com" && user.password === "12345") {
+    if (user.email === "test@gmail.com" && user.password === "123456789") {
       setTimeout(() => {
         navigate("/");
       }, 500);
-    } else alert("Пользователь не найден!");
+    } else toast.error("Пользователь с таким эл. адресом и паролем не найден.");
   };
 
   const onSubmit = (data: AuthProps) => {
@@ -51,7 +51,7 @@ export const Authorization = () => {
         <Sidebar>
           <Box>
             <Label>Staff Pro</Label>
-            <Title place="sidebar">{t("title")}</Title>
+            <Title place="sidebar">HR processes are automated, welcome back!</Title>
           </Box>
           <Img src={signInImage} alt="signIn" />
         </Sidebar>
@@ -75,8 +75,18 @@ export const Authorization = () => {
                 type="password"
                 withLabel
                 label="Пароль"
-                {...register("password", { required: true })}
-                error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+                {...register("password", {
+                  required: true,
+                  validate: () =>
+                    getValues("password").length >= 8 && getValues("password").length <= 64,
+                })}
+                error={
+                  errors.email?.type === "required"
+                    ? "Обязательное поле"
+                    : errors.password?.type === "validate"
+                    ? "Пароль должен содержать от 8 до 64 символов"
+                    : ""
+                }
               />
               <Line>
                 <Controller
