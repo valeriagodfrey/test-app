@@ -10,7 +10,7 @@ import { Header } from "../ui/header/Header";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
 
-interface AuthProps {
+export interface AuthProps {
   email?: string;
   password?: string;
   check?: boolean;

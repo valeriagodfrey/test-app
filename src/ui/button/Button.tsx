@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { ButtonHTMLAttributes, FC } from "react";
 import styled from "styled-components";
 
-export const Button: FC = ({ children }) => {
-  return <Container>{children}</Container>;
+export const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...rest }) => {
+  return <Container {...rest}>{children}</Container>;
 };
 const Container = styled.button`
   display: flex;

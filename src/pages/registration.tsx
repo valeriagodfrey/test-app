@@ -1,9 +1,11 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { media } from "../assets/media";
+import { signUp } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { CustomInput } from "../ui/input/Input";
@@ -11,7 +13,7 @@ import { ILink } from "../ui/link/Link";
 import { gender, IOption, months, years } from "../ui/select/data";
 import { CustomSelect } from "../ui/select/Select";
 
-interface RegistrProps {
+export interface RegisterProps {
   email: string;
   name: string;
   patronymic: string;
@@ -33,12 +35,12 @@ export const Registration = () => {
     control,
     getValues,
     handleSubmit,
-  } = useForm<RegistrProps>();
+  } = useForm<RegisterProps>();
 
   const day = getValues("day");
   const phoneNumber = getValues("number");
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: RegistrProps) => dispatch(data);
+
+  const onSubmit = (data: RegisterProps) => dispatch(signUp(data));
 
   return (
     <WrapperContainer>
