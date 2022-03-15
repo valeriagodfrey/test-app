@@ -44,9 +44,10 @@ export const Registration = () => {
   const onSubmit = (data: RegisterProps) => {
     dispatch(signUp(data));
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
     }, 500);
   };
+
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>

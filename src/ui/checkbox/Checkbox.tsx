@@ -14,7 +14,13 @@ export const Checkbox: FC<Props> = ({ error, checked, onChange, children }) => {
     <Container>
       <CheckboxContainer>
         <CustomCheckbox checked={checked} onClick={(value) => onChange(!value)} error={error}>
-          {checked ? <CheckIcon /> : ""}
+          {checked ? (
+            <Icon>
+              <CheckIcon />{" "}
+            </Icon>
+          ) : (
+            ""
+          )}
         </CustomCheckbox>
         <Agreement>{children}</Agreement>
       </CheckboxContainer>
@@ -33,11 +39,13 @@ const Container = styled.div`
 
 const CheckboxContainer = styled.div`
   cursor: pointer;
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  grid-gap: 8px;
 `;
 
 const CustomCheckbox = styled.div<{ error?: string; checked?: boolean }>`
+  position: relative;
   width: 16px;
   height: 16px;
   display: flex;
@@ -46,11 +54,17 @@ const CustomCheckbox = styled.div<{ error?: string; checked?: boolean }>`
   position: relative;
   align-items: center;
   border-radius: 2px;
-  margin-right: 8px;
+
   border: ${({ checked }) => (checked ? "1px solid #1890ff" : " 1px solid #d9d9d9")};
   margin-top: 4px;
 `;
 
+const Icon = styled.div`
+  position: absolute;
+  height: 16px;
+  margin-bottom: 2px;
+  margin-left: -1px;
+`;
 const Agreement = styled.div`
   font-size: 14px;
   line-height: 22px;

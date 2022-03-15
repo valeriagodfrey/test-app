@@ -15,7 +15,11 @@ export const HomePage = () => {
     </Container>
   );
 };
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+`;
 
 const ContentContainer = styled.div``;
 

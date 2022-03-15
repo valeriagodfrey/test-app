@@ -33,9 +33,9 @@ export const Authorization = () => {
   const handleAuth = (user: AuthProps) => {
     if (user.email === "test@gmail.com" && user.password === "123456789") {
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 500);
-    } else toast.error("Пользователь с таким эл. адресом и паролем не найден.");
+    } else alert("Пользователь с таким эл. адресом и паролем не найден.");
   };
 
   const onSubmit = (data: AuthProps) => {

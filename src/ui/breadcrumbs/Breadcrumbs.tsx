@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export type Crumb = {
   path: string;
-  name?: string;
+  name?: string | string[];
 };
 interface Props {
   data: Crumb[];

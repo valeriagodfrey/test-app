@@ -1,7 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { store } from "./core/redux/store";
 import { Authorization } from "./pages/authorization";
@@ -25,9 +25,10 @@ function App() {
       /> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/authorization" element={<Authorization />} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>
     </Provider>

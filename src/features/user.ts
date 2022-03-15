@@ -1,25 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { RegisterProps } from "../pages/registration";
+
 const initialStateSignIn = {
   value: { email: "", password: "" },
 };
+interface Users {
+  list: RegisterProps[];
+}
 
-const initialStateSignUp = {
-  value: {
-    email: "",
-    name: "",
-    patronymic: "",
-    surname: "",
-    password: "",
-    password2: "",
-    day: 0,
-    month: "",
-    year: 0,
-    number: 0,
-    gender: "",
-    check: false,
-  },
+const initialStateSignUp: Users = {
+  list: [],
 };
+
 export const signInSlice = createSlice({
   name: "signIn",
   initialState: initialStateSignIn,
@@ -35,7 +28,7 @@ export const signUpSlice = createSlice({
   initialState: initialStateSignUp,
   reducers: {
     signUp: (state, action) => {
-      state.value = action.payload;
+      state.list.push(action.payload);
     },
   },
 });

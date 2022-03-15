@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { CustomersIcon } from "../../assets/icons/CustomersIcon";
 import { DashboardIcon } from "../../assets/icons/DashboardIcon";
 import { DocumentsIcon } from "../../assets/icons/DocumentsIcon";
-import { DropdownArrow } from "../../assets/icons/DropdownArrow";
 import { HelpIcon } from "../../assets/icons/HelpIcon";
 import { ReportsIcon } from "../../assets/icons/ReportsIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
+import { Accordion } from "../accordion/Accordion";
 
 export const Sidebar = () => {
   return (
@@ -26,26 +26,54 @@ export const Sidebar = () => {
           <Label>Reports</Label>
         </Option>
         <Option drop>
-          <Box>
-            <Icon type="icon">
-              <DocumentsIcon />
-            </Icon>
-            <Label>Documents</Label>
-          </Box>
-          <Icon type="arrow">
-            <DropdownArrow />
-          </Icon>
+          <Accordion
+            label="Documents"
+            icon={<DocumentsIcon />}
+            content={
+              <>
+                <Option>
+                  <Box>
+                    <Label>Invoices</Label>
+                  </Box>
+                </Option>
+                <Option>
+                  <Box>
+                    <Label>Drafts</Label>
+                  </Box>
+                </Option>
+                <Option>
+                  <Box>
+                    <Label>Templates</Label>
+                  </Box>
+                </Option>
+              </>
+            }
+          />
         </Option>
-        <Option drop>
-          <Box>
-            <Icon type="icon">
-              <CustomersIcon />
-            </Icon>
-            <Label>Customers</Label>
-          </Box>
-          <Icon type="arrow">
-            <DropdownArrow />
-          </Icon>
+        <Option drop style={{ paddingBottom: 0 }}>
+          <Accordion
+            label="Customers"
+            icon={<CustomersIcon />}
+            content={
+              <>
+                <Option>
+                  <Box>
+                    <Label>Invoices</Label>
+                  </Box>
+                </Option>
+                <Option>
+                  <Box>
+                    <Label>Drafts</Label>
+                  </Box>
+                </Option>
+                <Option>
+                  <Box>
+                    <Label>Templates</Label>
+                  </Box>
+                </Option>
+              </>
+            }
+          />
         </Option>
         <Option>
           <Icon type="icon">
@@ -78,14 +106,14 @@ const Option = styled.div<{ drop?: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 9px 0px 9px 24px;
+  padding: ${({ drop }) => (drop ? "9px 0px 0px 24px" : "9px 0px 9px 24px")};
   color: #595959;
   :hover {
     background: #e6f7ff;
     color: #1890ff;
   }
   :active {
-    border-right: 3px solid #1890ff;
+    border-right: ${({ drop }) => (drop ? "none " : "3px solid #1890ff")};
   }
   transition: all 0.1s linear;
 `;
