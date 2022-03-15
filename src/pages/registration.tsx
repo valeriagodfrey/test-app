@@ -207,7 +207,7 @@ export const Registration = () => {
             </Checkbox>
           )}
         />
-        <Button>Создать аккаунт</Button>
+        <Button size="big">Создать аккаунт</Button>
         <Label position="center">
           Уже есть аккаунт? <ILink to="/authorization">Войдите</ILink>
         </Label>
@@ -261,7 +261,8 @@ const Label = styled.div<{ position?: "left" | "center" }>`
   font-size: 14px;
   line-height: 22px;
   text-align: ${({ position }) => (position === "left" ? "left" : "center")};
-  margin-bottom: 8px;
+  margin-top: 24px;
+
   color: #595959;
 `;
 

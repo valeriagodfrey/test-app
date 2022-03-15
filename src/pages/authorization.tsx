@@ -1,8 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
@@ -43,7 +41,6 @@ export const Authorization = () => {
     handleAuth(data);
   };
 
-  const { t } = useTranslation();
   return (
     <Container>
       <Header />
@@ -108,7 +105,7 @@ export const Authorization = () => {
                 />
                 <ILink to="/forgot-password">Забыли пароль?</ILink>
               </Line>
-              <Button>Войти</Button>
+              <Button size="big">Войти</Button>
             </SignInForm>
           </SignInContainer>
         </Content>

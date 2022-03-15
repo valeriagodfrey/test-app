@@ -21,6 +21,10 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ContentContainer = styled.div``;
+const ContentContainer = styled.div`
+  width: 100%;
+`;
 
-const Content = styled.div``;
+const Content = styled.div`
+  background: #f0f2f5;
+`;

@@ -93,7 +93,7 @@ export const Sidebar = () => {
 };
 const Container = styled.div`
   width: 14%;
-  height: 100vh;
+  height: calc(100vh - 40px);
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
   padding-top: 40px;
 `;

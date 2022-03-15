@@ -56,7 +56,7 @@ const CustomCheckbox = styled.div<{ error?: string; checked?: boolean }>`
   border-radius: 2px;
 
   border: ${({ checked }) => (checked ? "1px solid #1890ff" : " 1px solid #d9d9d9")};
-  margin-top: 4px;
+  margin-top: 3px;
 `;
 
 const Icon = styled.div`
