@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,42 +19,59 @@ export const getUsersSelector = createSelector(
 );
 
 export const ForgotPassword = () => {
+  const [emailMatch, setEmailMatch] = useState(false);
   const navigate = useNavigate();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    getValues,
   } = useForm<Props>();
 
   const users = useSelector(getUsersSelector);
+  const currentEmail = getValues("email");
 
   const onSubmit = (user: Props) => {
     const currentUser = user;
     const regUser = users.find((item) => item.email === currentUser.email);
-    if (currentUser.email === regUser?.email) {
-      setTimeout(() => {
-        navigate("/password_recovery");
-      }, 1000);
-    } else alert("Пользователь с указанным Email не найден");
-  };
 
+    if (currentUser.email === regUser?.email) {
+      setEmailMatch((s) => !s);
+    } else {
+      alert("Пользователь с указанным Email не найден");
+    }
+  };
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Caption>Забыли пароль?</Caption>
-        <Label>Введите ваш эл. адрес, чтобы восстановить доступ к своему аккаунту</Label>
-        <CustomInput
-          type="email"
-          placeholder="Email"
-          {...register("email", { required: true })}
-          error={errors.email?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <Button size="big">Подтвердить</Button>
-        <SignUp>
-          Впервые в StaffPro? <ILink to="/registration">Зарегистрируйтесь</ILink>
-        </SignUp>
-      </Form>
+      {emailMatch === false ? (
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Caption>Забыли пароль?</Caption>
+          <Label>Введите ваш эл. адрес, чтобы восстановить доступ к своему аккаунту</Label>
+          <CustomInput
+            type="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
+            error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <Button size="big">Подтвердить</Button>
+          <SignUp>
+            Впервые в StaffPro? <ILink to="/registration">Зарегистрируйтесь</ILink>
+          </SignUp>
+        </Form>
+      ) : (
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Caption>Восстановление доступа к аккаунту</Caption>
+          <Label>
+            На электронный адрес {currentEmail !== "" ? currentEmail : undefined} отправлено письмо.
+            Перейдите по ссылке в письме для создания нового пароля.
+          </Label>
+
+          <Button size="big" onClick={() => navigate("/home")}>
+            На главную
+          </Button>
+        </Form>
+      )}
     </WrapperContainer>
   );
 };
