@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { CustomersIcon } from "../../assets/icons/CustomersIcon";
@@ -10,16 +11,17 @@ import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { Accordion } from "../accordion/Accordion";
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <MenuLine>
-        <Option>
+        <Option onClick={() => navigate("/dashboard")}>
           <Icon type="icon">
             <DashboardIcon />
           </Icon>
           <Label>Dashboard</Label>
         </Option>
-        <Option>
+        <Option onClick={() => navigate("/reports")}>
           <Icon type="icon">
             <ReportsIcon />
           </Icon>
@@ -31,17 +33,17 @@ export const Sidebar = () => {
             icon={<DocumentsIcon />}
             content={
               <>
-                <Option>
+                <Option onClick={() => navigate("/invoices")}>
                   <Box>
                     <Label>Invoices</Label>
                   </Box>
                 </Option>
-                <Option>
+                <Option onClick={() => navigate("/drafts")}>
                   <Box>
                     <Label>Drafts</Label>
                   </Box>
                 </Option>
-                <Option>
+                <Option onClick={() => navigate("/templates")}>
                   <Box>
                     <Label>Templates</Label>
                   </Box>
@@ -50,23 +52,23 @@ export const Sidebar = () => {
             }
           />
         </Option>
-        <Option drop style={{ paddingBottom: 0 }}>
+        <Option drop>
           <Accordion
             label="Customers"
             icon={<CustomersIcon />}
             content={
               <>
-                <Option>
+                <Option onClick={() => navigate("/documents/invoices")}>
                   <Box>
                     <Label>Invoices</Label>
                   </Box>
                 </Option>
-                <Option>
+                <Option onClick={() => navigate("/documents/drafts")}>
                   <Box>
                     <Label>Drafts</Label>
                   </Box>
                 </Option>
-                <Option>
+                <Option onClick={() => navigate("/documents/template")}>
                   <Box>
                     <Label>Templates</Label>
                   </Box>
@@ -75,13 +77,13 @@ export const Sidebar = () => {
             }
           />
         </Option>
-        <Option>
+        <Option onClick={() => navigate("/settings")}>
           <Icon type="icon">
             <SettingsIcon />
           </Icon>
           <Label>Settings</Label>
         </Option>
-        <Option>
+        <Option onClick={() => navigate("/help")}>
           <Icon type="icon">
             <HelpIcon />
           </Icon>

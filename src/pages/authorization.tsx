@@ -1,5 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,6 +10,7 @@ import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
+import { getUsersSelector } from "./forgotPassword";
 
 export interface AuthProps {
   email: string;
@@ -28,8 +29,11 @@ export const Authorization = () => {
     handleSubmit,
   } = useForm<AuthProps>();
 
+  const users = useSelector(getUsersSelector);
   const handleAuth = (user: AuthProps) => {
-    if (user.email === "test@gmail.com" && user.password === "123456789") {
+    const currentUser = user;
+    const regUser = users.find((item) => item.email === currentUser.email);
+    if (currentUser.email === regUser?.email && currentUser.password === regUser?.password) {
       setTimeout(() => {
         navigate("/home");
       }, 500);
@@ -103,7 +107,7 @@ export const Authorization = () => {
                     </Checkbox>
                   )}
                 />
-                <ILink to="/forgot-password">Забыли пароль?</ILink>
+                <ILink to="/forgot_password">Забыли пароль?</ILink>
               </Line>
               <Button size="big">Войти</Button>
             </SignInForm>

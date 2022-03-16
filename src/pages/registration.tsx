@@ -45,7 +45,7 @@ export const Registration = () => {
     dispatch(signUp(data));
     setTimeout(() => {
       navigate("/home");
-    }, 500);
+    }, 1000);
   };
 
   return (

@@ -10,7 +10,22 @@ interface Users {
 }
 
 const initialStateSignUp: Users = {
-  list: [],
+  list: [
+    {
+      email: "test@gmail.com",
+      name: "Ivan",
+      patronymic: "Ivanovich",
+      surname: "Ivanov",
+      password: "123456789",
+      password2: "123456789",
+      day: 1,
+      month: "Март",
+      year: 1985,
+      gender: "Мужчина",
+      number: 992093423,
+      check: true,
+    },
+  ],
 };
 
 export const signInSlice = createSlice({
@@ -33,8 +48,19 @@ export const signUpSlice = createSlice({
   },
 });
 
+export const changePasswordSlice = createSlice({
+  name: "signUp",
+  initialState: initialStateSignUp,
+  reducers: {
+    changePassword: (state, action) => {
+      state.list.find((item) => (item.password = action.payload));
+    },
+  },
+});
+
 export const { signIn } = signInSlice.actions;
 export const { signUp } = signUpSlice.actions;
 
 export const { reducer: signInReducer } = signInSlice;
 export const { reducer: signUpReducer } = signUpSlice;
+export const { reducer: changePasswordReducer } = changePasswordSlice;

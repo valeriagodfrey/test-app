@@ -1,23 +1,26 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { PlusIcon } from "../../assets/icons/PlusIcon";
+import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { Button } from "../button/Button";
 import { paths } from "./paths";
 
 export const PageHeader = () => {
   const location = useLocation();
+  const title = location.pathname.replace(/\//g, "")[0].toUpperCase() + location.pathname.slice(2);
   const crumbs = [
     { path: "/home", name: "Home" },
     {
       path: location.pathname,
-      name: paths.map((item) => (item.path === location.pathname ? item.label : "New page")),
+      name: title,
     },
   ];
-  const title = location.pathname.replace(/\//g, "")[0].toUpperCase() + location.pathname.slice(2);
+
   return (
     <Container>
-      <Breadcrumbs>Home / Documents / Invoices</Breadcrumbs>
+      <Breadcrumbs data={crumbs} />
       <Title>{title}</Title>
       <Box>
         <Submenu>
@@ -27,12 +30,14 @@ export const PageHeader = () => {
           <Block>Unpaid</Block>
           <Block>Archived</Block>
         </Submenu>
-        <Button>
-          <Icon>
-            <PlusIcon />
-          </Icon>
-          Add new invoice
-        </Button>
+        <ButtonContainer>
+          <Button>
+            <Icon>
+              <PlusIcon />
+            </Icon>
+            Add new invoice
+          </Button>
+        </ButtonContainer>
       </Box>
     </Container>
   );
@@ -52,16 +57,11 @@ const Submenu = styled.div`
   display: flex;
 `;
 
-const Breadcrumbs = styled.div`
-  font-size: 14px;
-  line-height: 22px;
-  color: #595959;
-`;
-
 const Block = styled.div`
   font-size: 14px;
   line-height: 22px;
   padding: 11px 0px;
+  cursor: pointer;
   :not(:last-child) {
     margin-right: 32px;
   }
@@ -76,3 +76,5 @@ const Box = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const ButtonContainer = styled.div``;

@@ -27,11 +27,11 @@ export const Breadcrumbs = ({ data }: Props) => {
   );
 };
 const Container = styled.div`
-  color: ${({ theme }) => theme.colors.red};
+  color: #8c8c8c;
   font-weight: 500;
 `;
 const ILink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.red};
+  color: black;
   font-weight: 500;
 `;
