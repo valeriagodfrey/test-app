@@ -15,22 +15,23 @@ import { Registration } from "./pages/registration";
 import { Reports } from "./pages/reports";
 import { Settings } from "./pages/settings";
 import { Templates } from "./pages/templates";
-import { StyledToastContainer } from "./ui/notificatoin/Notification";
+import { StyledToastContainer } from "./ui/notification/Notification";
 
 function App() {
   return (
     <Provider store={store}>
-      {/* <StyledToastContainer
+      <StyledToastContainer
         position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
+        autoClose={2000}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss={true}
         draggable
         pauseOnHover
-      /> */}
+        icon={false}
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<HomePage />} />

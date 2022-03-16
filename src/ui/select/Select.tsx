@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import Select, {
   ActionMeta,
+  components,
   MultiValue,
   PropsValue,
   SingleValue,
@@ -25,24 +25,33 @@ interface Props {
   defaultValue?: PropsValue<IOption>;
 }
 export const CustomSelect = ({ placeholder, type = "default", error, options, ...rest }: Props) => {
-  const [click, setClick] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const DropdownIndicator = (props: any) => {
+    return (
+      components.DropdownIndicator && (
+        <components.DropdownIndicator {...props}>
+          <SelectArrowIcon />
+        </components.DropdownIndicator>
+      )
+    );
+  };
 
   return (
     <Container>
-      <SelectContainer onClick={() => setClick((s) => !s)}>
+      <SelectContainer>
         <Select
+          components={{ DropdownIndicator }}
           aria-errormessage={error}
-          isSearchable
-          menuIsOpen={click}
+          isSearchable={false}
           placeholder={placeholder}
           styles={error ? StylesError : type === "lang" ? StylesLang : Styles}
           closeMenuOnSelect
           options={options}
           onChange={rest.onChange}
         />
-        <Icon>
+        {/* <Icon>
           <SelectArrowIcon />
-        </Icon>
+        </Icon> */}
       </SelectContainer>
       <CustomError error={error} />
     </Container>
@@ -64,15 +73,6 @@ const SelectContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-`;
-
-const Icon = styled.div`
-  width: 18px;
-  position: absolute;
-  display: flex;
-  right: 11px;
-  cursor: pointer;
-  align-items: center;
 `;
 
 const Styles: StylesConfig<IOption> = {

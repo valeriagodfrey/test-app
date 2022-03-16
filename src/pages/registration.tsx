@@ -261,7 +261,7 @@ const Label = styled.div<{ position?: "left" | "center" }>`
   font-size: 14px;
   line-height: 22px;
   text-align: ${({ position }) => (position === "left" ? "left" : "center")};
-  margin-top: 24px;
+  margin: ${({ position }) => (position === "left" ? "0px 0px 9px" : "24px 0px 0px")};
 
   color: #595959;
 `;

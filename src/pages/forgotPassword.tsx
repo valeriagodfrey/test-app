@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { RootState, store } from "../core/redux/store";
@@ -38,7 +39,7 @@ export const ForgotPassword = () => {
     if (currentUser.email === regUser?.email) {
       setEmailMatch((s) => !s);
     } else {
-      alert("Пользователь с указанным Email не найден");
+      toast.error("Пользователь с указанным Email не найден");
     }
   };
   return (
