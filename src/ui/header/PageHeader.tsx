@@ -14,7 +14,7 @@ export const PageHeader = () => {
     { path: "/home", name: "Home" },
     {
       path: location.pathname,
-      name: title,
+      name: location.pathname === "/home" ? "" : title,
     },
   ];
 
