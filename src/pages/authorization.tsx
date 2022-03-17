@@ -31,7 +31,6 @@ export const Authorization = () => {
   } = useForm<AuthProps>();
 
   const users = useSelector(getUsersSelector);
-  console.log(store.getState().signIn);
 
   const handleAuth = (user: AuthProps) => {
     const currentUser = user;
@@ -40,6 +39,7 @@ export const Authorization = () => {
       setTimeout(() => {
         navigate("/home");
       }, 500);
+      console.log(store.getState().signIn);
     } else alert("Пользователь с таким эл. адресом и паролем не найден.");
   };
 

@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { JsxElement } from "typescript/lib/tsserverlibrary";
 
 import { PlusIcon } from "../../assets/icons/PlusIcon";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { Button } from "../button/Button";
 import { paths } from "./paths";
 
-export const PageHeader = () => {
+interface Props {
+  onClick: () => Element;
+}
+
+export const PageHeader = ({ onClick }: Props) => {
   const location = useLocation();
   const title = location.pathname.replace(/\//g, "")[0].toUpperCase() + location.pathname.slice(2);
   const crumbs = [
@@ -31,7 +36,7 @@ export const PageHeader = () => {
           <Block>Archived</Block>
         </Submenu>
         <ButtonContainer>
-          <Button>
+          <Button onClick={onClick}>
             <Icon>
               <PlusIcon />
             </Icon>

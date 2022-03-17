@@ -1,15 +1,20 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { JsxElement } from "typescript/lib/tsserverlibrary";
 
 import { PageHeader } from "../header/PageHeader";
 import { Sidebar } from "../sidebar/Sidebar";
 
-export const Layout: FC = ({ children }) => {
+interface Props {
+  onClick: () => Element;
+}
+
+export const Layout: FC<Props> = ({ children, onClick }) => {
   return (
     <Container>
       <Sidebar />
       <RightContainer>
-        <PageHeader />
+        <PageHeader onClick={onClick} />
         <ContentContainer>
           <Content>{children}</Content>
         </ContentContainer>

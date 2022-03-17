@@ -29,7 +29,7 @@ export const PasswordRecovery = () => {
   const currentEmail = useSelector(getEmailSelector);
 
   const onSubmit = (newPass: ChangePassProps) => {
-    const regUser = users.find((item) => item.email === currentEmail.email && item);
+    const regUser = users.find((item) => item.email === currentEmail.email);
 
     toast.success("Новый пароль успешно сохранен");
     setTimeout(() => {
