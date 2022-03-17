@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
+import { store } from "../core/redux/store";
 import { getUsersSelector } from "../features/selectors/Selector";
 import { signIn } from "../features/user";
 import { Button } from "../ui/button/Button";
@@ -30,6 +31,7 @@ export const Authorization = () => {
   } = useForm<AuthProps>();
 
   const users = useSelector(getUsersSelector);
+  console.log(store.getState().signIn);
 
   const handleAuth = (user: AuthProps) => {
     const currentUser = user;

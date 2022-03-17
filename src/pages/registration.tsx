@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { media } from "../assets/media";
+import { store } from "../core/redux/store";
 import { signUp } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
@@ -40,6 +41,7 @@ export const Registration = () => {
 
   const day = getValues("day");
   const phoneNumber = getValues("number");
+  console.log(store.getState().signUp);
 
   const onSubmit = (data: RegisterProps) => {
     dispatch(signUp(data));

@@ -11,22 +11,7 @@ interface Users {
 }
 
 const initialStateSignUp: Users = {
-  list: [
-    {
-      email: "test@gmail.com",
-      name: "Ivan",
-      patronymic: "Ivanovich",
-      surname: "Ivanov",
-      password: "123456789",
-      password2: "123456789",
-      day: 1,
-      month: "Март",
-      year: 1985,
-      gender: "Мужчина",
-      number: 992093423,
-      check: true,
-    },
-  ],
+  list: [],
 };
 
 export const signInSlice = createSlice({
