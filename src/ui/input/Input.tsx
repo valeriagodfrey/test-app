@@ -57,7 +57,7 @@ const Input = styled.input<{ error?: string }>`
   border-color: ${({ error }) => (error ? "#F5222D" : "#D9D9D9")};
   border-radius: 2px;
   box-shadow: ${({ error }) => (error ? "0px 0px 4px rgba(245, 34, 45, 0.5)" : "transparent")};
-  margin-bottom: 6px;
+  margin-bottom: ${({ error }) => (error ? "6px" : 0)};
   ::placeholder {
     color: #bfbfbf;
   }
@@ -71,7 +71,8 @@ const Icon = styled.div<{ withLabel?: boolean }>`
   position: absolute;
   display: flex;
   right: 11px;
-  margin-bottom: ${({ withLabel }) => (withLabel ? `0px` : `6px`)};
+  bottom: ${({ withLabel }) => (withLabel ? `11px` : undefined)};
+
   margin-top: ${({ withLabel }) => (withLabel ? `18px` : `0px`)};
   cursor: pointer;
 `;

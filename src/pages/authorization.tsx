@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
+import { getUsersSelector } from "../features/selectors/Selector";
 import { signIn } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
-import { getUsersSelector } from "./forgotPassword";
 
 export interface AuthProps {
   email: string;
@@ -30,6 +30,7 @@ export const Authorization = () => {
   } = useForm<AuthProps>();
 
   const users = useSelector(getUsersSelector);
+
   const handleAuth = (user: AuthProps) => {
     const currentUser = user;
     const regUser = users.find((item) => item.email === currentUser.email);

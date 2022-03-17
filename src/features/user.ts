@@ -3,8 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RegisterProps } from "../pages/registration";
 
 const initialStateSignIn = {
-  value: { email: "", password: "" },
+  user: { email: "", password: "" },
 };
+
 interface Users {
   list: RegisterProps[];
 }
@@ -33,7 +34,7 @@ export const signInSlice = createSlice({
   initialState: initialStateSignIn,
   reducers: {
     signIn: (state, action) => {
-      state.value = action.payload;
+      state.user = action.payload;
     },
   },
 });
@@ -43,24 +44,23 @@ export const signUpSlice = createSlice({
   initialState: initialStateSignUp,
   reducers: {
     signUp: (state, action) => {
-      state.list.push(action.payload);
+      return { ...state, list: [...state.list, action.payload] };
     },
   },
 });
 
-export const changePasswordSlice = createSlice({
-  name: "signUp",
-  initialState: initialStateSignUp,
+export const rememberEmailSlice = createSlice({
+  name: "rememberEmail",
+  initialState: { email: "" },
   reducers: {
-    changePassword: (state, action) => {
-      state.list.find((item) => (item.password = action.payload));
-    },
+    rememberEmail: (state, action) => (state.email = action.payload),
   },
 });
 
 export const { signIn } = signInSlice.actions;
 export const { signUp } = signUpSlice.actions;
+export const { rememberEmail } = rememberEmailSlice.actions;
 
 export const { reducer: signInReducer } = signInSlice;
 export const { reducer: signUpReducer } = signUpSlice;
-export const { reducer: changePasswordReducer } = changePasswordSlice;
+export const { reducer: rememberEmailReducer } = rememberEmailSlice;

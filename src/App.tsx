@@ -11,6 +11,7 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Help } from "./pages/help";
 import { HomePage } from "./pages/home";
 import { Invoices } from "./pages/invoices";
+import { PasswordRecovery } from "./pages/passwordRecovery";
 import { Registration } from "./pages/registration";
 import { Reports } from "./pages/reports";
 import { Settings } from "./pages/settings";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/documents/drafts" element={<Drafts />} />
           <Route path="/documents/templates" element={<Templates />} />
           <Route path="/forgot_password" element={<ForgotPassword />} />
+          <Route path="/password_recovery" element={<PasswordRecovery />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/authorization" element={<Authorization />} />
           <Route path="*" element={<Navigate to="/home" />} />

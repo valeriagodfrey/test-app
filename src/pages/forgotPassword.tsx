@@ -1,12 +1,12 @@
-import { createSelector } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
-import { RootState, store } from "../core/redux/store";
+import { getUsersSelector } from "../features/selectors/Selector";
+import { rememberEmail } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
@@ -14,13 +14,10 @@ import { ILink } from "../ui/link/Link";
 interface Props {
   email: string;
 }
-export const getUsersSelector = createSelector(
-  (state: RootState) => state.signUp.list,
-  (state) => state,
-);
 
 export const ForgotPassword = () => {
-  const [emailMatch, setEmailMatch] = useState(false);
+  const dispatch = useDispatch();
+  const [emailMatch, setEmailMatch] = useState<boolean>();
   const navigate = useNavigate();
   const {
     register,
@@ -37,15 +34,17 @@ export const ForgotPassword = () => {
     const regUser = users.find((item) => item.email === currentUser.email);
 
     if (currentUser.email === regUser?.email) {
-      setEmailMatch((s) => !s);
+      setEmailMatch(true);
+      dispatch(rememberEmail(currentEmail));
     } else {
+      setEmailMatch(false);
       toast.error("Пользователь с указанным Email не найден");
     }
   };
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>
-      {emailMatch === false ? (
+      {emailMatch !== true ? (
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Caption>Забыли пароль?</Caption>
           <Label>Введите ваш эл. адрес, чтобы восстановить доступ к своему аккаунту</Label>
@@ -53,7 +52,13 @@ export const ForgotPassword = () => {
             type="email"
             placeholder="Email"
             {...register("email", { required: true })}
-            error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+            error={
+              errors.email?.type === "required"
+                ? "Обязательное поле"
+                : emailMatch === false
+                ? "Пользователь с указанным Email не найден"
+                : ""
+            }
           />
           <Button size="big">Подтвердить</Button>
           <SignUp>
@@ -68,7 +73,7 @@ export const ForgotPassword = () => {
             Перейдите по ссылке в письме для создания нового пароля.
           </Label>
 
-          <Button size="big" onClick={() => navigate("/home")}>
+          <Button size="big" onClick={() => navigate("/password_recovery")}>
             На главную
           </Button>
         </Form>
@@ -80,14 +85,14 @@ const WrapperContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   background-color: #f0f2f5;
 `;
 
 const Title = styled.div`
-  margin: 134px 0px 64px;
+  margin-bottom: 48px;
   font-size: 56px;
   line-height: 64px;
 `;

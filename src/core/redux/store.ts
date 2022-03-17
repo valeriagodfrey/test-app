@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { changePasswordReducer, signInReducer, signUpReducer } from "../../features/user";
+import { rememberEmailReducer, signInReducer, signUpReducer } from "../../features/user";
 
 export const store = configureStore({
   reducer: {
     signIn: signInReducer,
     signUp: signUpReducer,
-    changePassword: changePasswordReducer,
+    rememberEmail: rememberEmailReducer,
   },
 });
 
