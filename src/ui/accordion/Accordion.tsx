@@ -14,6 +14,7 @@ interface Props {
 
 export const Accordion = ({ label, icon, content }: Props) => {
   const [clicked, setClicked] = useState(false);
+
   return (
     <Container>
       <Box onClick={() => setClicked((s) => !s)}>
@@ -21,7 +22,7 @@ export const Accordion = ({ label, icon, content }: Props) => {
           <Icon>{icon}</Icon>
           <Label>{label}</Label>
         </TitleContainer>
-        <Arrow>
+        <Arrow position={clicked === false ? "down" : "up"}>
           <DropdownArrow />
         </Arrow>
       </Box>
@@ -48,8 +49,10 @@ const Icon = styled.div<{ type?: "arrow" | "icon" }>`
   margin-right: 8px;
 `;
 
-const Arrow = styled.div`
+const Arrow = styled.div<{ position?: "up" | "down" }>`
   margin-right: 24px;
+  transform: ${({ position }) => (position === "up" ? `rotate(180deg)` : 0)};
+  transition: all 0.1s ease-in-out;
 `;
 
 const Content = styled.div<{ clicked?: boolean }>`

@@ -26,7 +26,7 @@ export const Breadcrumbs = ({ data }: Props) => {
           ),
         )
       ) : (
-        <div />
+        <Empty />
       )}
     </Container>
   );
@@ -39,4 +39,8 @@ const ILink = styled(Link)`
   text-decoration: none;
   color: #8c8c8c;
   font-weight: 500;
+`;
+
+const Empty = styled.div`
+  height: 21px;
 `;
