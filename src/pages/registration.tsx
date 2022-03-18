@@ -154,7 +154,7 @@ export const Registration = () => {
         <Box>
           <CustomInput
             type="tel"
-            placeholder="Телефон"
+            placeholder="Телефон (опционально)"
             {...register("number", {
               required: true,
               maxLength: 10,

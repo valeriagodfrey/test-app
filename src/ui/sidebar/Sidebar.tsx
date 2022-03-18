@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -33,17 +32,17 @@ export const Sidebar = () => {
             icon={<DocumentsIcon />}
             content={
               <>
-                <Option onClick={() => navigate("/invoices")}>
+                <Option onClick={() => navigate("/documents/invoices")}>
                   <Box>
                     <Label>Invoices</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/drafts")}>
+                <Option onClick={() => navigate("/documents/drafts")}>
                   <Box>
                     <Label>Drafts</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/templates")}>
+                <Option onClick={() => navigate("/documents/templates")}>
                   <Box>
                     <Label>Templates</Label>
                   </Box>
@@ -68,7 +67,7 @@ export const Sidebar = () => {
                     <Label>Drafts</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/documents/template")}>
+                <Option onClick={() => navigate("/documents/templates")}>
                   <Box>
                     <Label>Templates</Label>
                   </Box>

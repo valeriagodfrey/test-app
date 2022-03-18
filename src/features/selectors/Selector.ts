@@ -10,3 +10,8 @@ export const getEmailSelector = createSelector(
   (state: RootState) => state.rememberEmail,
   (state) => state,
 );
+
+export const getSeekersSelector = createSelector(
+  (state: RootState) => state.addSeeker,
+  (state) => state,
+);

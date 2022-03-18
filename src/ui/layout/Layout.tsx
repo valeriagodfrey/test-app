@@ -1,20 +1,15 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { JsxElement } from "typescript/lib/tsserverlibrary";
 
 import { PageHeader } from "../header/PageHeader";
 import { Sidebar } from "../sidebar/Sidebar";
 
-interface Props {
-  onClick: () => Element;
-}
-
-export const Layout: FC<Props> = ({ children, onClick }) => {
+export const Layout: FC = ({ children }) => {
   return (
     <Container>
       <Sidebar />
       <RightContainer>
-        <PageHeader onClick={onClick} />
+        <PageHeader />
         <ContentContainer>
           <Content>{children}</Content>
         </ContentContainer>
@@ -39,6 +34,7 @@ const ContentContainer = styled.div`
   height: calc(100vh - 175px);
 `;
 const Content = styled.div`
+  padding: 22px;
   background: #ffffff;
   height: 100%;
 `;
