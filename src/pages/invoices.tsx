@@ -14,12 +14,17 @@ export const Invoices = () => {
       <Content>
         {seekers.list.map((item, ind) => (
           <Seeker key={ind}>
-            <Label>Фамилия: {item.surname}</Label>
-            <Label>Имя: {item.name}</Label>
-            <Label>Отчество: {item.patronymic}</Label>
-            <Label>
-              Дата рождения: {item.day} {item.month} {item.year}
-            </Label>
+            <SeekerContainer>
+              <Label>Фамилия: {item.surname}</Label>
+              <Label>Имя: {item.name}</Label>
+              <Label>Отчество: {item.patronymic}</Label>
+              <Label>
+                Дата рождения: {item.day} {item.month} {item.year}
+              </Label>
+            </SeekerContainer>
+            <ButtonContainer>
+              <Button styleType="secondary">Удалить</Button>
+            </ButtonContainer>
           </Seeker>
         ))}
       </Content>
@@ -30,8 +35,14 @@ export const Invoices = () => {
 const Seeker = styled.div`
   border: 1px solid #d9d9d9;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Content = styled.div``;
 
 const Label = styled.div``;
+
+const SeekerContainer = styled.div``;
+const ButtonContainer = styled.div``;

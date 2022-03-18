@@ -60,6 +60,9 @@ export const addSeekerSlice = createSlice({
     clearList: (state) => {
       return { ...state, list: [] };
     },
+    deleteSeeker: (state, action) => {
+      return { ...state, list: [...state.list, action.payload] };
+    },
   },
 });
 

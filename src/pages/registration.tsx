@@ -14,6 +14,7 @@ import { gender, IOption, months, years } from "../ui/select/data";
 import { CustomSelect } from "../ui/select/Select";
 
 export interface RegisterProps {
+  id: string;
   email: string;
   name: string;
   patronymic: string;

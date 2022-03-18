@@ -11,6 +11,7 @@ import { gender, IOption, months, years } from "../select/data";
 import { CustomSelect } from "../select/Select";
 
 export interface AddSeekerProps {
+  id: string;
   email: string;
   surname: string;
   name: string;
@@ -299,7 +300,7 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
                 >
                   Отмена
                 </Button>
-                <Button onClick={onClick}>Пригласить</Button>
+                <Button>Пригласить</Button>
               </ButtonsLine>
             </Form>
           )}
