@@ -17,6 +17,7 @@ import { Registration } from "./pages/registration";
 import { Reports } from "./pages/reports";
 import { Settings } from "./pages/settings";
 import { Templates } from "./pages/templates";
+import { Users } from "./pages/users";
 import { StyledToastContainer } from "./ui/notification/Notification";
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
         />
         <BrowserRouter>
           <Routes>
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/authorization" element={<Authorization />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/reports" element={<Reports />} />
@@ -45,11 +48,10 @@ function App() {
             <Route path="/documents/invoices" element={<Invoices />} />
             <Route path="/documents/drafts" element={<Drafts />} />
             <Route path="/documents/templates" element={<Templates />} />
+            <Route path="/customers/users" element={<Users />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
-            <Route path="/password_recovery" element={<PasswordRecovery />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/authorization" element={<Authorization />} />
-            <Route path="*" element={<Navigate to="/home" />} />
+            <Route path="/password_recovery" element={<PasswordRecovery />} />{" "}
+            <Route path="*" element={<Navigate to="/authorization" />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

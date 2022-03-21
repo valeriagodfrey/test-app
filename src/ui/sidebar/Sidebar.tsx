@@ -57,17 +57,17 @@ export const Sidebar = () => {
             icon={<CustomersIcon />}
             content={
               <>
-                <Option onClick={() => navigate("/documents/invoices")}>
+                <Option onClick={() => navigate("/customers/users")}>
                   <Box>
-                    <Label>Invoices</Label>
+                    <Label>Users</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/documents/drafts")}>
+                <Option onClick={() => navigate("/customers/drafts")}>
                   <Box>
                     <Label>Drafts</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/documents/templates")}>
+                <Option onClick={() => navigate("/customers/templates")}>
                   <Box>
                     <Label>Templates</Label>
                   </Box>

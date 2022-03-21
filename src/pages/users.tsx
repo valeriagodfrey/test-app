@@ -1,53 +1,55 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { getSeekersSelector } from "../features/selectors/Selector";
-import { clearList, deleteSeeker } from "../features/user";
+import { getUsersSelector } from "../features/selectors/Selector";
+import { deleteUser } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { Layout } from "../ui/layout/Layout";
 
-export const Invoices = () => {
-  const seekers = useSelector(getSeekersSelector);
+export const Users = () => {
+  const users = useSelector(getUsersSelector);
   const dispatch = useDispatch();
-
   return (
     <Layout>
       <Content>
-        {seekers.list.map((item) => (
-          <Seeker key={item.id}>
-            <SeekerContainer>
+        {users.list.map((item) => (
+          <User key={item.id}>
+            <UserContainer>
               <Label>Фамилия: {item.surname}</Label>
               <Label>Имя: {item.name}</Label>
               <Label>Отчество: {item.patronymic}</Label>
               <Label>
                 Дата рождения: {item.day} {item.month} {item.year}
               </Label>
+              <Label>Email: {item.email}</Label>
               <Label>ID: {item.id}</Label>
-            </SeekerContainer>
+            </UserContainer>
             <ButtonContainer>
-              <Button styleType="secondary" onClick={() => dispatch(deleteSeeker(item.id))}>
+              <Button styleType="secondary" onClick={() => dispatch(deleteUser(item.id))}>
                 Удалить
               </Button>
             </ButtonContainer>
-          </Seeker>
+          </User>
         ))}
       </Content>
-      <Button onClick={() => dispatch(clearList())}>Clear</Button>
     </Layout>
   );
 };
-const Seeker = styled.div`
-  border: 1px solid #d9d9d9;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-`;
 
 const Content = styled.div``;
 
 const Label = styled.div``;
 
-const SeekerContainer = styled.div``;
+const User = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
+
+const UserContainer = styled.div``;
+
 const ButtonContainer = styled.div``;

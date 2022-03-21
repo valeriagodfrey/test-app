@@ -1,16 +1,12 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import i18n from "../../translations/i18n";
 import { languages } from "./data";
 
 export const LangSelect = () => {
-  const { i18n } = useTranslation();
-
   return (
     <div className="select">
-      {/* <Select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}> */}
-      <Select>
+      <Select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
         {languages.map((item) => (
           <option value={item.value}>{item.label}</option>
         ))}

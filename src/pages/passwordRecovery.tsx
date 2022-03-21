@@ -1,37 +1,45 @@
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
+import { store } from "../core/redux/store";
 import { getEmailSelector, getUsersSelector } from "../features/selectors/Selector";
+import { passwordRecovery } from "../features/user";
 // import { changePassword } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
+import { RegisterProps } from "./registration";
 
-export interface ChangePassProps {
+interface Props {
   password: string;
   password2: string;
 }
 
 export const PasswordRecovery = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
     formState: { errors },
     handleSubmit,
     getValues,
-  } = useForm<ChangePassProps>();
-
-  const users = useSelector(getUsersSelector);
+  } = useForm<Props>();
 
   const currentEmail = useSelector(getEmailSelector);
+  const users = useSelector(getUsersSelector);
 
-  const onSubmit = (newPass: ChangePassProps) => {
-    const regUser = users.find((item) => item.email === currentEmail.email);
+  const onSubmit = (user: Props) => {
+    const regUser = users.list.filter((item) => item.email === currentEmail.email);
+    regUser.map((item) => (item.password = user.password));
+    dispatch(passwordRecovery(regUser));
 
     toast.success("Новый пароль успешно сохранен");
+    // eslint-disable-next-line no-console
+    console.log(store.getState().signUp);
+
     setTimeout(() => {
       navigate("/home");
     }, 800);
@@ -40,7 +48,6 @@ export const PasswordRecovery = () => {
   return (
     <WrapperContainer>
       <Title>StaffPro</Title>
-
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Caption>Введите новый пароль</Caption>
 
@@ -75,7 +82,9 @@ export const PasswordRecovery = () => {
               : ""
           }
         />
-        <Button size="big">Подтвердить</Button>
+        <Button size="big" type="submit">
+          Подтвердить
+        </Button>
       </Form>
     </WrapperContainer>
   );

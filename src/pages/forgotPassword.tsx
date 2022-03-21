@@ -31,7 +31,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = (user: Props) => {
     const currentUser = user;
-    const regUser = users.find((item) => item.email === currentUser.email);
+    const regUser = users.list.find((item) => item.email === currentUser.email);
 
     if (currentUser.email === regUser?.email) {
       setEmailMatch(true);
@@ -60,7 +60,9 @@ export const ForgotPassword = () => {
                 : ""
             }
           />
-          <Button size="big">Подтвердить</Button>
+          <Button size="big" type="submit">
+            Подтвердить
+          </Button>
           <SignUp>
             Впервые в StaffPro? <ILink to="/registration">Зарегистрируйтесь</ILink>
           </SignUp>
@@ -73,7 +75,7 @@ export const ForgotPassword = () => {
             Перейдите по ссылке в письме для создания нового пароля.
           </Label>
 
-          <Button size="big" onClick={() => navigate("/password_recovery")}>
+          <Button size="big" type="button" onClick={() => navigate("/password_recovery")}>
             На главную
           </Button>
         </Form>

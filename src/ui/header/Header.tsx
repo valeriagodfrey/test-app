@@ -2,18 +2,26 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LangIcon } from "../../assets/icons/LangIcon";
-import { ILink } from "../link/Link";
+import i18n from "../../translations/i18n";
 import { LangSelect } from "../select/LangSelect";
 
 export const Header = () => {
   const { t } = useTranslation();
+  const currentLang = i18n.language;
   return (
     <Container>
       <HeaderLine>
         <LangIcon />
         <Label>
-          {t("Сменить язык на ")}
-          <ILink to="/authorization">english</ILink>?
+          {t("authPage.changeLang")}
+          <Lang
+            onClick={() => {
+              i18n.changeLanguage(currentLang === "ru" ? "en" : "ru");
+            }}
+          >
+            {currentLang === "ru" ? " english" : " russian"}
+          </Lang>
+          ?
         </Label>
         <Delimiter />
         <LangSelect />
@@ -49,4 +57,9 @@ const HeaderLine = styled.div`
   display: flex;
   align-items: center;
   margin: 20px 0px 20px 0px;
+`;
+
+const Lang = styled.span`
+  color: #1890ff;
+  cursor: pointer;
 `;

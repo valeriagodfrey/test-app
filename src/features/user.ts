@@ -29,6 +29,10 @@ export const signInSlice = createSlice({
     signIn: (state, action) => {
       state.user = action.payload;
     },
+    signOut: (state) => {
+      state.user.email = "";
+      state.user.password = "";
+    },
   },
 });
 
@@ -38,6 +42,12 @@ export const signUpSlice = createSlice({
   reducers: {
     signUp: (state, action) => {
       return { ...state, list: [...state.list, action.payload] };
+    },
+    deleteUser: (state, action) => {
+      state.list = state.list.filter((item) => item.id !== action.payload);
+    },
+    passwordRecovery: (state, action) => {
+      state.list.find((item) => (item.id === action.payload.id ? (item = action.payload) : item));
     },
   },
 });
@@ -61,16 +71,15 @@ export const addSeekerSlice = createSlice({
       return { ...state, list: [] };
     },
     deleteSeeker: (state, action) => {
-      return { ...state, list: [...state.list, action.payload] };
+      state.list = state.list.filter((item) => item.id !== action.payload);
     },
   },
 });
 
-export const { signIn } = signInSlice.actions;
-export const { signUp } = signUpSlice.actions;
+export const { signIn, signOut } = signInSlice.actions;
+export const { signUp, deleteUser, passwordRecovery } = signUpSlice.actions;
 export const { rememberEmail } = rememberEmailSlice.actions;
-export const { addSeeker } = addSeekerSlice.actions;
-export const { clearList } = addSeekerSlice.actions;
+export const { addSeeker, clearList, deleteSeeker } = addSeekerSlice.actions;
 
 export const { reducer: signInReducer } = signInSlice;
 export const { reducer: signUpReducer } = signUpSlice;

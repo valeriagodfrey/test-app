@@ -1,7 +1,7 @@
 import React, { forwardRef, InputHTMLAttributes, useState } from "react";
 import styled from "styled-components";
 
-import { EyeIcon } from "../../assets/icons/EyeIcon";
+import { EyeIconNew } from "../../assets/icons/EyeIconNew";
 import { CustomError } from "../error/Error";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -19,10 +19,10 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
     <Container>
       <InputContainer>
         {params.withLabel ? <Label>{params.label}</Label> : undefined}
-        <Input {...params} type={type} ref={ref} error={params.error} />
-        {type === "password" && (
-          <Icon withLabel={params.withLabel} onClick={changeType}>
-            <EyeIcon type={type} />
+        <Input {...params} type={type} ref={ref} error={params.error}></Input>
+        {params.type === "password" && (
+          <Icon withLabel={params.withLabel} error={params.error} onClick={changeType}>
+            <EyeIconNew type={type} />
           </Icon>
         )}
       </InputContainer>
@@ -66,14 +66,13 @@ const Input = styled.input<{ error?: string }>`
   }
 `;
 
-const Icon = styled.div<{ withLabel?: boolean }>`
-  width: 18px;
+const Icon = styled.div<{ withLabel?: boolean; error?: string }>`
   position: absolute;
   display: flex;
   right: 11px;
-  bottom: ${({ withLabel }) => (withLabel ? `11px` : undefined)};
-
-  margin-top: ${({ withLabel }) => (withLabel ? `18px` : `0px`)};
+  bottom: ${({ withLabel, error }) =>
+    withLabel ? `12px` : error !== "" && withLabel ? `0px` : "none"};
+  margin-top: ${({ withLabel }) => (withLabel ? `17px` : `0px`)};
   cursor: pointer;
 `;
 

@@ -1,10 +1,13 @@
+import "../translations/i18n";
+
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
-import { store } from "../core/redux/store";
 import { getUsersSelector } from "../features/selectors/Selector";
 import { signIn } from "../features/user";
 import { Button } from "../ui/button/Button";
@@ -20,6 +23,7 @@ export interface AuthProps {
 }
 
 export const Authorization = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -34,13 +38,12 @@ export const Authorization = () => {
 
   const handleAuth = (user: AuthProps) => {
     const currentUser = user;
-    const regUser = users.find((item) => item.email === currentUser.email);
+    const regUser = users.list.find((item) => item.email === currentUser.email);
     if (currentUser.email === regUser?.email && currentUser.password === regUser?.password) {
       setTimeout(() => {
         navigate("/home");
       }, 500);
-      console.log(store.getState().signIn);
-    } else alert("Пользователь с таким эл. адресом и паролем не найден.");
+    } else toast.error("Пользователь с таким эл. адресом и паролем не найден.");
   };
 
   const onSubmit = (data: AuthProps) => {
@@ -55,25 +58,26 @@ export const Authorization = () => {
         <Sidebar>
           <Box>
             <Label>Staff Pro</Label>
-            <Title place="sidebar">HR processes are automated, welcome back!</Title>
+            <Title place="sidebar">{t("authPage.titleAuth")}</Title>
           </Box>
           <Img src={signInImage} alt="signIn" />
         </Sidebar>
         <Content>
           <HeaderLine>
             <SignUp>
-              Нет аккаунта?<ILink to="/registration"> Зарегистрироваться</ILink>
+              {t("authPage.noAcc")}
+              <ILink to="/registration"> {t("authPage.signUp")}</ILink>
             </SignUp>
           </HeaderLine>
           <SignInContainer>
             <SignInForm onSubmit={handleSubmit(onSubmit)}>
-              <Title place="content">Войти в Staff Pro</Title>
+              <Title place="content">{t("authPage.loginStaffPro")}</Title>
               <CustomInput
                 type="email"
                 withLabel
                 label="Эл. адрес"
                 {...register("email", { required: true })}
-                error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+                error={errors.email?.type === "required" ? `${t("authPage.requiredField")}` : ""}
               />
               <CustomInput
                 type="password"
@@ -86,9 +90,9 @@ export const Authorization = () => {
                 })}
                 error={
                   errors.email?.type === "required"
-                    ? "Обязательное поле"
+                    ? `${t("authPage.requiredField")}`
                     : errors.password?.type === "validate"
-                    ? "Пароль должен содержать от 8 до 64 символов"
+                    ? `${t("authPage.passwordValidation")}`
                     : ""
                 }
               />

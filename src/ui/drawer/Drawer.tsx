@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 import { addSeeker } from "../../features/user";
 import { Button } from "../button/Button";
@@ -43,7 +44,11 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
   const phoneNumber = getValues("number");
 
   const onSubmit = (data: AddSeekerProps) => {
-    dispatch(addSeeker(data));
+    if (Object.keys(errors).length === 0) {
+      data.id = uuidv4();
+      dispatch(addSeeker(data));
+      onClick?.();
+    }
   };
 
   return (
@@ -171,7 +176,7 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
                 >
                   Отмена
                 </Button>
-                <Button onClick={onClick}>Пригласить</Button>
+                <Button type="submit">Пригласить</Button>
               </ButtonsLine>
             </Form>
           ) : (
@@ -300,7 +305,7 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
                 >
                   Отмена
                 </Button>
-                <Button>Пригласить</Button>
+                <Button type="submit">Пригласить</Button>
               </ButtonsLine>
             </Form>
           )}

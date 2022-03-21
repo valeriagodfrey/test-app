@@ -2,6 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 import { media } from "../assets/media";
 import { store } from "../core/redux/store";
@@ -42,14 +43,16 @@ export const Registration = () => {
 
   const day = getValues("day");
   const phoneNumber = getValues("number");
-  console.log(store.getState().signUp);
 
   const onSubmit = (data: RegisterProps) => {
+    data.id = uuidv4();
     dispatch(signUp(data));
     setTimeout(() => {
       navigate("/home");
     }, 1000);
   };
+  // eslint-disable-next-line no-console
+  console.log(store.getState().signUp);
 
   return (
     <WrapperContainer>
