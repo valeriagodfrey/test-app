@@ -1,4 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -31,6 +32,7 @@ export interface RegisterProps {
 }
 
 export const Registration = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -58,48 +60,48 @@ export const Registration = () => {
     <WrapperContainer>
       <Title>StaffPro</Title>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Caption>Зарегистрируйтесь</Caption>
+        <Caption>{t("registerPage.titleRegister")}</Caption>
         <CustomInput
           type="email"
           placeholder="Email"
           {...register("email", { required: true })}
-          error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+          error={errors.email?.type === "required" ? `${t("requiredField")}` : ""}
         />
         <CustomInput
-          placeholder="Фамилия"
+          placeholder={t("registerPage.surname")}
           {...register("surname", { required: true })}
-          error={errors.surname?.type === "required" ? "Обязательное поле" : ""}
+          error={errors.surname?.type === "required" ? `${t("requiredField")}` : ""}
         />
         <Box type="fio">
           <CustomInput
-            placeholder="Имя"
+            placeholder={t("registerPage.name")}
             {...register("name", { required: true })}
-            error={errors.name?.type === "required" ? "Обязательное поле" : ""}
+            error={errors.name?.type === "required" ? `${t("requiredField")}` : ""}
           />
           <CustomInput
-            placeholder="Отчество"
+            placeholder={t("registerPage.patronymic")}
             {...register("patronymic", { required: true })}
-            error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
+            error={errors.patronymic?.type === "required" ? `${t("requiredField")}` : ""}
           />
         </Box>
         <CustomInput
           type="password"
-          placeholder="Пароль"
+          placeholder={t("passwordInput")}
           {...register("password", {
             required: true,
             validate: () => getValues("password").length >= 8 && getValues("password").length <= 64,
           })}
           error={
             errors.password?.type === "required"
-              ? "Обязательное поле"
+              ? `${t("requiredField")}`
               : errors.password?.type === "validate"
-              ? "Пароль должен содержать от 8 до 64 символов"
+              ? `${t("passwordValidation")}`
               : ""
           }
         />
         <CustomInput
           type="password"
-          placeholder="Пароль"
+          placeholder={t("passwordInput")}
           {...register("password2", {
             required: true,
 
@@ -107,20 +109,20 @@ export const Registration = () => {
           })}
           error={
             errors.password2?.type === "required"
-              ? "Обязательное поле"
+              ? `${t("requiredField")}`
               : errors.password2?.type === "validate"
               ? "Пароли не совпадают"
               : ""
           }
         />
-        <Label position="left">Дата рождения</Label>
+        <Label position="left">{t("registerPage.birthday")}</Label>
         <Box type="birthday">
           <CustomInput
-            placeholder="День"
+            placeholder={t("registerPage.day")}
             {...register("day", { required: true })}
             error={
               errors.number && errors.day?.type === "required"
-                ? "Обязательное поле"
+                ? `${t("requiredField")}`
                 : errors.number && (Number(day) >= 32 || Number(day) < 1)
                 ? "Введите верное число"
                 : ""
@@ -136,7 +138,9 @@ export const Registration = () => {
                 options={months}
                 value={(months || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={errors.month && errors.month?.type === "required" ? "Обязательное поле" : ""}
+                error={
+                  errors.month && errors.month?.type === "required" ? `${t("requiredField")}` : ""
+                }
               />
             )}
           />
@@ -150,7 +154,9 @@ export const Registration = () => {
                 options={years}
                 value={(years || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={errors.year && errors.year?.type === "required" ? "Обязательное поле" : ""}
+                error={
+                  errors.year && errors.year?.type === "required" ? `${t("requiredField")}` : ""
+                }
               />
             )}
           />
@@ -184,7 +190,7 @@ export const Registration = () => {
                 value={(gender || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
                 error={
-                  errors.gender && errors.gender.type === "required" ? "Обязательное поле" : ""
+                  errors.gender && errors.gender.type === "required" ? `${t("requiredField")}` : ""
                 }
               />
             )}

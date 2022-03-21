@@ -75,14 +75,14 @@ export const Authorization = () => {
               <CustomInput
                 type="email"
                 withLabel
-                label="Эл. адрес"
+                label={t("authPage.emailInput")}
                 {...register("email", { required: true })}
-                error={errors.email?.type === "required" ? `${t("authPage.requiredField")}` : ""}
+                error={errors.email?.type === "required" ? `${t("requiredField")}` : ""}
               />
               <CustomInput
                 type="password"
                 withLabel
-                label="Пароль"
+                label={t("authPage.passwordInput")}
                 {...register("password", {
                   required: true,
                   validate: () =>
@@ -90,9 +90,9 @@ export const Authorization = () => {
                 })}
                 error={
                   errors.email?.type === "required"
-                    ? `${t("authPage.requiredField")}`
+                    ? `${t("requiredField")}`
                     : errors.password?.type === "validate"
-                    ? `${t("authPage.passwordValidation")}`
+                    ? `${t("passwordValidation")}`
                     : ""
                 }
               />
@@ -110,13 +110,13 @@ export const Authorization = () => {
                         props.field.onChange(value);
                       }}
                     >
-                      Запомнить меня
+                      {t("authPage.rememberMe")}
                     </Checkbox>
                   )}
                 />
-                <ILink to="/forgot_password">Забыли пароль?</ILink>
+                <ILink to="/forgot_password">{t("authPage.forgotPassword")}</ILink>
               </Line>
-              <Button size="big">Войти</Button>
+              <Button size="big">{t("authPage.signInButton")}</Button>
             </SignInForm>
           </SignInContainer>
         </Content>
