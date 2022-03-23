@@ -47,7 +47,7 @@ export const signUpSlice = createSlice({
       state.list = state.list.filter((item) => item.id !== action.payload);
     },
     passwordRecovery: (state, action) => {
-      state.list.find((item) => (item.id === action.payload.id ? (item = action.payload) : item));
+      return { ...state, list: action.payload };
     },
   },
 });
@@ -56,7 +56,9 @@ export const rememberEmailSlice = createSlice({
   name: "rememberEmail",
   initialState: { email: "" },
   reducers: {
-    rememberEmail: (state, action) => (state.email = action.payload),
+    rememberEmail: (state, action) => {
+      state.email = action.payload;
+    },
   },
 });
 

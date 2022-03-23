@@ -82,7 +82,7 @@ export const Authorization = () => {
               <CustomInput
                 type="password"
                 withLabel
-                label={t("authPage.passwordInput")}
+                label={t("passwordInput")}
                 {...register("password", {
                   required: true,
                   validate: () =>

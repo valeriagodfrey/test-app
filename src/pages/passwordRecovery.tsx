@@ -28,13 +28,20 @@ export const PasswordRecovery = () => {
     getValues,
   } = useForm<Props>();
 
-  const currentEmail = useSelector(getEmailSelector);
   const users = useSelector(getUsersSelector);
+  const currentEmail = useSelector(getEmailSelector);
+  console.log(currentEmail.email);
 
   const onSubmit = (user: Props) => {
-    const regUser = users.list.filter((item) => item.email === currentEmail.email);
-    regUser.map((item) => (item.password = user.password));
-    dispatch(passwordRecovery(regUser));
+    const newPassword = user.password;
+
+    const listUserWithNewPassword = [...users.list].map((item) => {
+      item.password =
+        item.email === currentEmail.email ? (item.password = newPassword) : item.password;
+      return item;
+    });
+
+    dispatch(passwordRecovery(listUserWithNewPassword));
 
     toast.success("Новый пароль успешно сохранен");
     // eslint-disable-next-line no-console

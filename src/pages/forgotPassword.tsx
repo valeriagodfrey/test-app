@@ -10,6 +10,7 @@ import { rememberEmail } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
+import { RegisterProps } from "./registration";
 
 interface Props {
   email: string;
@@ -18,6 +19,7 @@ interface Props {
 export const ForgotPassword = () => {
   const dispatch = useDispatch();
   const [emailMatch, setEmailMatch] = useState<boolean>();
+
   const navigate = useNavigate();
   const {
     register,
@@ -27,13 +29,14 @@ export const ForgotPassword = () => {
   } = useForm<Props>();
 
   const users = useSelector(getUsersSelector);
-  const currentEmail = getValues("email");
+  const email = getValues("email");
 
   const onSubmit = (user: Props) => {
-    const currentUser = user;
-    const regUser = users.list.find((item) => item.email === currentUser.email);
+    const currentEmail = email === user.email ? email : user.email;
 
-    if (currentUser.email === regUser?.email) {
+    const emailExists = users.list.some((item) => item.email === currentEmail);
+
+    if (emailExists === true) {
       setEmailMatch(true);
       dispatch(rememberEmail(currentEmail));
     } else {
@@ -68,11 +71,11 @@ export const ForgotPassword = () => {
           </SignUp>
         </Form>
       ) : (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form>
           <Caption>Восстановление доступа к аккаунту</Caption>
           <Label>
-            На электронный адрес {currentEmail !== "" ? currentEmail : undefined} отправлено письмо.
-            Перейдите по ссылке в письме для создания нового пароля.
+            На электронный адрес {email !== "" ? email : ""} отправлено письмо. Перейдите по ссылке
+            в письме для создания нового пароля.
           </Label>
 
           <Button size="big" type="button" onClick={() => navigate("/password_recovery")}>
