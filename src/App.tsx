@@ -5,19 +5,19 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "./core/redux/store";
-import { Authorization } from "./pages/authorization";
-import { Dashboard } from "./pages/dashboard";
-import { Drafts } from "./pages/drafts";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Help } from "./pages/help";
-import { HomePage } from "./pages/home";
-import { Invoices } from "./pages/invoices";
-import { PasswordRecovery } from "./pages/passwordRecovery";
-import { Registration } from "./pages/registration";
-import { Reports } from "./pages/reports";
-import { Settings } from "./pages/settings";
-import { Templates } from "./pages/templates";
-import { Users } from "./pages/users";
+import { Authorization } from "./pages/Authorization";
+import { Dashboard } from "./pages/Dashboard";
+import { Drafts } from "./pages/Drafts";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { Help } from "./pages/Help";
+import { HomePage } from "./pages/Home";
+import { Invoices } from "./pages/Invoices";
+import { PasswordRecovery } from "./pages/PasswordRecovery";
+import { Registration } from "./pages/Registration";
+import { Reports } from "./pages/Reports";
+import { Settings } from "./pages/Settings";
+import { Templates } from "./pages/Templates";
+import { Users } from "./pages/Users";
 import { StyledToastContainer } from "./ui/notification/Notification";
 
 function App() {

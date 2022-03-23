@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { RegisterProps } from "../../pages/registration";
+import { RegisterProps } from "../../pages/Registration";
 
 interface Users {
   list: RegisterProps[];

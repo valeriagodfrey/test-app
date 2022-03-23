@@ -8,7 +8,8 @@ import { TabsList } from "./data";
 
 export const InvoicesHeader = () => {
   const [show, setShow] = useState(false);
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState("all");
+  const [type, setType] = useState("seeker");
   return (
     <div>
       <Box>
@@ -19,16 +20,35 @@ export const InvoicesHeader = () => {
             </Tab>
           ))}
         </Submenu>
-        <ButtonContainer>
-          <Button onClick={() => setShow((s) => !s)}>
-            <Icon>
-              <PlusIcon />
-            </Icon>
-            Add new invoice
-          </Button>
-        </ButtonContainer>
+        <div>
+          <ButtonContainer>
+            <Button
+              onClick={() => {
+                setShow((s) => !s);
+                setType("seeker");
+              }}
+            >
+              <Icon>
+                <PlusIcon />
+              </Icon>
+              Add new seeker
+            </Button>
+            <Button
+              style={{ marginLeft: "10px" }}
+              onClick={() => {
+                setShow((s) => !s);
+                setType("employee");
+              }}
+            >
+              <Icon>
+                <PlusIcon />
+              </Icon>
+              Add new employee
+            </Button>
+          </ButtonContainer>
+        </div>
       </Box>
-      <Drawer type="seeker" visible={show} onClick={() => setShow((s) => !s)} />
+      <Drawer type={type} visible={show} onClick={() => setShow((s) => !s)} />
     </div>
   );
 };
@@ -55,7 +75,9 @@ const Tab = styled.div<{ active?: boolean }>`
   color: ${({ active }) => (active ? `#1890ff` : "#595959")};
 `;
 
-const ButtonContainer = styled.div``;
+const ButtonContainer = styled.div`
+  display: flex;
+`;
 
 const Icon = styled.span`
   margin-right: 4px;
