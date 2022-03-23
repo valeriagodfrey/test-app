@@ -2,8 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { getUsersSelector } from "../features/selectors/Selector";
-import { deleteUser } from "../features/user";
+import { getUsersSelector } from "../modules/authorisation/selectors";
+import { deleteUser } from "../modules/authorisation/slice";
 import { Button } from "../ui/button/Button";
 import { Layout } from "../ui/layout/Layout";
 

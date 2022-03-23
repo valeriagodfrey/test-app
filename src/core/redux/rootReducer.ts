@@ -1,11 +1,11 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 import {
-  addSeekerReducer,
   rememberEmailReducer,
   signInReducer,
   signUpReducer,
-} from "../../features/user";
+} from "../../modules/authorisation/slice";
+import { addSeekerReducer } from "../../modules/seekers/slice";
 
 export const rootReducer = combineReducers({
   signIn: signInReducer,

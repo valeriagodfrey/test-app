@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { getSeekersSelector } from "../features/selectors/Selector";
-import { clearList, deleteSeeker } from "../features/user";
+import { getSeekersSelector } from "../modules/seekers/selectors";
+import { clearList, deleteSeeker } from "../modules/seekers/slice";
 import { Button } from "../ui/button/Button";
 import { Layout } from "../ui/layout/Layout";
 

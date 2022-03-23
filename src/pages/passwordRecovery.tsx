@@ -5,12 +5,11 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { store } from "../core/redux/store";
-import { getEmailSelector, getUsersSelector } from "../features/selectors/Selector";
-import { passwordRecovery } from "../features/user";
+import { getEmailSelector } from "../modules/authorisation/selectors";
+import { passwordRecovery } from "../modules/authorisation/slice";
 // import { changePassword } from "../features/user";
 import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
-import { RegisterProps } from "./registration";
 
 interface Props {
   password: string;
@@ -28,8 +27,8 @@ export const PasswordRecovery = () => {
     getValues,
   } = useForm<Props>();
 
-  const users = useSelector(getUsersSelector);
   const currentEmail = useSelector(getEmailSelector);
+  // eslint-disable-next-line no-console
   console.log(currentEmail.email);
 
   const onSubmit = (user: Props) => {

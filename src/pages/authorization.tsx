@@ -1,4 +1,4 @@
-import "../translations/i18n";
+import "../core/i18n/i18n";
 
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
-import { getUsersSelector } from "../features/selectors/Selector";
-import { signIn } from "../features/user";
+import { getUsersSelector } from "../modules/authorisation/selectors";
+import { signIn } from "../modules/authorisation/slice";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";

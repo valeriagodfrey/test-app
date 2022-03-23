@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { getCurrentUserSelector } from "../../features/selectors/Selector";
-import { signOut } from "../../features/user";
+import { getCurrentUserSelector } from "../../modules/authorisation/selectors";
+import { signOut } from "../../modules/authorisation/slice";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { Button } from "../button/Button";
 import { InvoicesHeader } from "./InvoicesHeader";

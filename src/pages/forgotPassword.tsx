@@ -5,12 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
-import { getUsersSelector } from "../features/selectors/Selector";
-import { rememberEmail } from "../features/user";
+import { getUsersSelector } from "../modules/authorisation/selectors";
+import { rememberEmail } from "../modules/authorisation/slice";
 import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
-import { RegisterProps } from "./registration";
 
 interface Props {
   email: string;

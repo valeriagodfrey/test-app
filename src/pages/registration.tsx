@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { media } from "../assets/media";
 import { store } from "../core/redux/store";
-import { signUp } from "../features/user";
+import { signUp } from "../modules/authorisation/slice";
 import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { CustomInput } from "../ui/input/Input";

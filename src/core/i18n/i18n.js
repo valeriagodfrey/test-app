@@ -19,6 +19,4 @@ i18n
     },
   });
 
-i18n.changeLanguage("ru");
-
 export default i18n;

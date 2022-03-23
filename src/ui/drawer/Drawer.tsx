@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-import { addSeeker } from "../../features/user";
+import { addSeeker } from "../../modules/seekers/slice";
 import { Button } from "../button/Button";
 import { CustomInput } from "../input/Input";
 import { gender, IOption, months, years } from "../select/data";

@@ -1,24 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { RegisterProps } from "../pages/registration";
-import { AddSeekerProps } from "../ui/drawer/Drawer";
+import { RegisterProps } from "../../pages/registration";
+
+interface Users {
+  list: RegisterProps[];
+}
 
 const initialStateSignIn = {
   user: { email: "", password: "" },
 };
 
-interface Users {
-  list: RegisterProps[];
-}
-interface Seekers {
-  list: AddSeekerProps[];
-}
-
 const initialStateSignUp: Users = {
-  list: [],
-};
-
-const initialStateAddSeeker: Seekers = {
   list: [],
 };
 
@@ -67,28 +59,10 @@ export const rememberEmailSlice = createSlice({
   },
 });
 
-export const addSeekerSlice = createSlice({
-  name: "addSeeker",
-  initialState: initialStateAddSeeker,
-  reducers: {
-    addSeeker: (state, action) => {
-      return { ...state, list: [...state.list, action.payload] };
-    },
-    clearList: (state) => {
-      return { ...state, list: [] };
-    },
-    deleteSeeker: (state, action) => {
-      state.list = state.list.filter((item) => item.id !== action.payload);
-    },
-  },
-});
-
 export const { signIn, signOut } = signInSlice.actions;
 export const { signUp, deleteUser, passwordRecovery } = signUpSlice.actions;
 export const { rememberEmail } = rememberEmailSlice.actions;
-export const { addSeeker, clearList, deleteSeeker } = addSeekerSlice.actions;
 
 export const { reducer: signInReducer } = signInSlice;
 export const { reducer: signUpReducer } = signUpSlice;
 export const { reducer: rememberEmailReducer } = rememberEmailSlice;
-export const { reducer: addSeekerReducer } = addSeekerSlice;
