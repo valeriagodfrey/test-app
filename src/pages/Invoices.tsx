@@ -1,19 +1,27 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { getEmployeeSelector } from "../modules/employee/selectors";
 import { getSeekersSelector } from "../modules/seekers/selectors";
 import { clearList, deleteSeeker } from "../modules/seekers/slice";
 import { Button } from "../ui/button/Button";
+import { tabsList } from "../ui/header/data";
+import { InvoicesHeader } from "../ui/header/InvoicesHeader";
 import { Layout } from "../ui/layout/Layout";
 
 export const Invoices = () => {
-  const seekers = useSelector(getSeekersSelector);
   const dispatch = useDispatch();
+
+  const seekers = useSelector(getSeekersSelector);
+  const employee = useSelector(getEmployeeSelector);
+
+  const allApplications = employee.list.concat(seekers.list);
 
   return (
     <Layout>
       <Content>
-        {seekers.list.map((item) => (
+        {allApplications.map((item) => (
           <Seeker key={item.id}>
             <SeekerContainer>
               <Label>Фамилия: {item.surname}</Label>
@@ -22,6 +30,7 @@ export const Invoices = () => {
               <Label>
                 Дата рождения: {item.day} {item.month} {item.year}
               </Label>
+              {item.position ? <Label>Должность: {item.position}</Label> : null}
               <Label>ID: {item.id}</Label>
             </SeekerContainer>
             <ButtonContainer>
@@ -50,4 +59,5 @@ const Content = styled.div``;
 const Label = styled.div``;
 
 const SeekerContainer = styled.div``;
+
 const ButtonContainer = styled.div``;

@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -6,20 +7,24 @@ import { getCurrentUserSelector } from "../../modules/authorisation/selectors";
 import { signOut } from "../../modules/authorisation/slice";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
 import { Button } from "../button/Button";
-import { InvoicesHeader } from "./InvoicesHeader";
 
-export const PageHeader = () => {
+export const PageHeader: FC = ({ children }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const title = location.pathname.replace(/\//g, "")[0].toUpperCase() + location.pathname.slice(2);
+
+  const title =
+    location.pathname.substring(location.pathname.lastIndexOf("/") + 1)[0].toUpperCase() +
+    location.pathname.substring(location.pathname.lastIndexOf("/") + 1).slice(1);
+  const path = location.pathname.replace(/\//g, "")[0].toUpperCase() + location.pathname.slice(2);
+
   const currentUser = useSelector(getCurrentUserSelector);
 
   const crumbs = [
     { path: "/home", name: "Home" },
     {
       path: location.pathname,
-      name: location.pathname === "/home" ? "" : title,
+      name: location.pathname === "/home" ? "" : path,
     },
   ];
 
@@ -45,7 +50,7 @@ export const PageHeader = () => {
             </Button>
           </User>
         </Line>
-        {location.pathname === "/documents/invoices" ? <InvoicesHeader /> : ""}
+        {children}
       </Container>
     </>
   );

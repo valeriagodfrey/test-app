@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
+import { AddEmployeeProps } from "../../modules/employee/interfaces/employeeInterfaces";
 import { addSeeker } from "../../modules/seekers/slice";
 import { Button } from "../button/Button";
-import { AddSeekerProps } from "../drawer/Drawer";
 import { CustomInput } from "../input/Input";
 import { gender, IOption, months, years } from "../select/data";
 import { CustomSelect } from "../select/Select";
@@ -23,12 +23,12 @@ export const EmployeeForm = ({ onClick }: Props) => {
     control,
     getValues,
     handleSubmit,
-  } = useForm<AddSeekerProps>();
+  } = useForm<AddEmployeeProps>();
 
   const day = getValues("day");
   const phoneNumber = getValues("number");
 
-  const onSubmit = (data: AddSeekerProps) => {
+  const onSubmit = (data: AddEmployeeProps) => {
     if (Object.keys(errors).length === 0) {
       data.id = uuidv4();
       dispatch(addSeeker(data));

@@ -7,6 +7,7 @@ import { DocumentsIcon } from "../../assets/icons/DocumentsIcon";
 import { HelpIcon } from "../../assets/icons/HelpIcon";
 import { ReportsIcon } from "../../assets/icons/ReportsIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
+import { media } from "../../assets/media";
 import { Accordion } from "../accordion/Accordion";
 
 export const Sidebar = () => {
@@ -93,10 +94,14 @@ export const Sidebar = () => {
   );
 };
 const Container = styled.div`
-  width: 14%;
-  height: calc(100vh - 40px);
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-  padding-top: 40px;
+  display: none;
+  ${media.desktop} {
+    display: flex;
+    width: 14%;
+    height: calc(100vh - 40px);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    padding-top: 40px;
+  }
 `;
 
 const MenuLine = styled.div``;
@@ -114,7 +119,7 @@ const Option = styled.div<{ drop?: boolean }>`
     color: #1890ff;
   }
   :active {
-    border-right: ${({ drop }) => (drop ? "none " : "3px solid #1890ff")};
+    border-right: ${({ drop }) => (drop ? "none" : "3px solid #1890ff")};
   }
   transition: all 0.1s linear;
 `;

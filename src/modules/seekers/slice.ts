@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { AddSeekerProps } from "../../ui/drawer/Drawer";
+import { AddSeekerProps } from "./interfaces/seekerInterfaces";
 
 interface Seekers {
   list: AddSeekerProps[];

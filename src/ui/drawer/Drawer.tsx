@@ -1,22 +1,8 @@
-import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 
 import { EmployeeForm } from "../form/EmployeeForm";
 import { SeekerForm } from "../form/SeekerForm";
 
-export interface AddSeekerProps {
-  id: string;
-  email: string;
-  surname: string;
-  name: string;
-  patronymic: string;
-  day: number;
-  month: string;
-  year: number;
-  number: number;
-  gender: string;
-  position: string;
-}
 interface Props {
   visible?: boolean;
   onClick?: () => void;
@@ -26,19 +12,11 @@ interface Props {
 export const Drawer = ({ visible, onClick, type }: Props) => {
   return (
     <Container>
-      <CSSTransition in={visible} timeout={300} classNames="drawer-menu" unmountOnExit>
-        <Menu visible={visible}>
-          {type === "seeker" ? (
-            <SeekerForm onClick={onClick} />
-          ) : (
-            <EmployeeForm onClick={onClick} />
-          )}
-        </Menu>
-      </CSSTransition>
+      <Menu visible={visible}>
+        {type === "seeker" ? <SeekerForm onClick={onClick} /> : <EmployeeForm onClick={onClick} />}
+      </Menu>
 
-      <CSSTransition in={visible} timeout={300} classNames="drawer-area" unmountOnExit>
-        <Area onClick={onClick} />
-      </CSSTransition>
+      <Area onClick={onClick} visible={visible} />
     </Container>
   );
 };
@@ -48,58 +26,22 @@ const Container = styled.div<{ visible?: boolean }>`
   top: 0;
   z-index: 10;
   max-height: 807px;
-
-  .drawer-menu-enter {
-    transform: translateX(100%);
-  }
-
-  .drawer-menu-active {
-    transform: translateX(0);
-    transition: transform 300ms;
-  }
-
-  .drawer-menu-exit {
-    transform: translateX(0);
-  }
-
-  .drawer-menu-exit-active {
-    transform: translateX(100%);
-    transition: transform 300ms;
-  }
-
-  .drawer-area-enter {
-    opacity: 0;
-  }
-
-  .drawer-area-active {
-    opacity: 0.6;
-    transition: opacity 300ms;
-  }
-
-  .drawer-area-exit {
-    opacity: 0.6;
-  }
-
-  .drawer-area-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
-  }
-
-  .drawer-area-enter-done {
-    opacity: 0.6;
-  }
 `;
 
 const Menu = styled.div<{ visible?: boolean }>`
   background-color: white;
-  transition: all 0.5s ease-in-out;
   max-width: 444px;
-  display: flex;
   flex-direction: column;
+  display: ${({ visible }) => (visible ? "flex" : "none")};
+  transform: ${({ visible }) => (visible ? "translateX(0)" : "translateX(100%)")};
+  transition: transform 300ms ease-in-out;
 `;
 
-const Area = styled.div`
+const Area = styled.div<{ visible?: boolean }>`
+  display: ${({ visible }) => (visible ? "flex" : "none")};
   background: grey;
+  opacity: ${({ visible }) => (visible ? "0.6" : "none")};
+  transition: opacity 300ms ease-in-out;
   z-index: -1;
   position: fixed;
   top: 0;
