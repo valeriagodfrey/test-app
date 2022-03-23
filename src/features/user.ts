@@ -47,7 +47,12 @@ export const signUpSlice = createSlice({
       state.list = state.list.filter((item) => item.id !== action.payload);
     },
     passwordRecovery: (state, action) => {
-      return { ...state, list: action.payload };
+      state.list = state.list.map((item) => {
+        item.password =
+          item.email === action.payload.email ? action.payload.password : item.password;
+        item.password2 = item.password;
+        return item;
+      });
     },
   },
 });

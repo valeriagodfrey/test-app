@@ -35,13 +35,7 @@ export const PasswordRecovery = () => {
   const onSubmit = (user: Props) => {
     const newPassword = user.password;
 
-    const listUserWithNewPassword = [...users.list].map((item) => {
-      item.password =
-        item.email === currentEmail.email ? (item.password = newPassword) : item.password;
-      return item;
-    });
-
-    dispatch(passwordRecovery(listUserWithNewPassword));
+    dispatch(passwordRecovery({ email: currentEmail.email, password: newPassword }));
 
     toast.success("Новый пароль успешно сохранен");
     // eslint-disable-next-line no-console
