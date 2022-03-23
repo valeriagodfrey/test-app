@@ -134,7 +134,7 @@ export const Registration = () => {
             rules={{ required: true }}
             render={(props) => (
               <CustomSelect
-                placeholder="Месяц"
+                placeholder={t("registerPage.month")}
                 options={months}
                 value={(months || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
@@ -150,7 +150,7 @@ export const Registration = () => {
             rules={{ required: true }}
             render={(props) => (
               <CustomSelect
-                placeholder="Год"
+                placeholder={t("registerPage.year")}
                 options={years}
                 value={(years || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
@@ -164,7 +164,7 @@ export const Registration = () => {
         <Box>
           <CustomInput
             type="tel"
-            placeholder="Телефон (опционально)"
+            placeholder={t("registerPage.phoneNumber")}
             {...register("number", {
               required: true,
               maxLength: 10,
@@ -175,7 +175,7 @@ export const Registration = () => {
               (errors.number?.type === "required" ||
                 String(phoneNumber).length > 10 ||
                 String(phoneNumber).length < 10)
-                ? "Такого номера не существует"
+                ? `${t("registerPage.numberValidation")}`
                 : ""
             }
           />
@@ -185,7 +185,7 @@ export const Registration = () => {
             rules={{ required: true }}
             render={(props) => (
               <CustomSelect
-                placeholder="Пол"
+                placeholder={t("registerPage.gender")}
                 options={gender}
                 value={(gender || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
@@ -209,9 +209,7 @@ export const Registration = () => {
                 props.field.onChange(value);
               }}
               error={
-                errors.check?.type === "required"
-                  ? "Для регистрации необходимо принять условия соглашения"
-                  : ""
+                errors.check?.type === "required" ? `${t("registerPage.agreementValidation")}` : ""
               }
             >
               Я согласен с <ILink to="/agreement"> пользовательским соглашением</ILink> и

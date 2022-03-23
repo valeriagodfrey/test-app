@@ -21,5 +21,11 @@ export const TRANSLATIONS_RU = {
     patronymic: "Отчество",
     birthday: "Дата рождения",
     day: "День",
+    month: "Месяц",
+    year: "Год",
+    phoneNumber: "Телефон (опционально)",
+    numberValidation: "Такого номера не существует",
+    gender: "Пол",
+    agreementValidation: "Для регистрации необходимо принять условия соглашения",
   },
 };

@@ -10,7 +10,6 @@ export const TRANSLATIONS_EN = {
     signUp: "Sign up",
     loginStaffPro: "Login to Staff Pro",
     emailInput: "Email",
-
     rememberMe: "Remember me",
     forgotPassword: "Forgot password?",
     signInButton: "Sign In",
@@ -21,5 +20,12 @@ export const TRANSLATIONS_EN = {
     name: "Name",
     patronymic: "Patronymic",
     birthday: "Date of Birth",
+    day: "Day",
+    month: "Month",
+    year: "Year",
+    phoneNumber: "Phone (optional)",
+    numberValidation: "This number doesn't exist",
+    gender: "Gender",
+    agreementValidation: "To register you must accept the terms of the agreement",
   },
 };

@@ -94,11 +94,14 @@ export const Sidebar = () => {
   );
 };
 const Container = styled.div`
-  display: flex;
-  width: 14%;
-  height: calc(100vh - 40px);
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-  padding-top: 40px;
+  display: none;
+  ${media.desktop} {
+    display: flex;
+    width: 14%;
+    height: calc(100vh - 40px);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    padding-top: 40px;
+  }
 `;
 
 const MenuLine = styled.div`
