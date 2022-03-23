@@ -26,6 +26,18 @@ export const addSeekerSlice = createSlice({
   },
 });
 
-export const { addSeeker, clearList, deleteSeeker } = addSeekerSlice.actions;
+export const rememberTabSlice = createSlice({
+  name: "rememberTab",
+  initialState: { currentTab: "" },
+  reducers: {
+    rememberTab: (state, action) => {
+      state.currentTab = action.payload;
+    },
+  },
+});
 
+export const { addSeeker, clearList, deleteSeeker } = addSeekerSlice.actions;
+export const { rememberTab } = rememberTabSlice.actions;
+
+export const { reducer: rememberTabReducer } = rememberTabSlice;
 export const { reducer: addSeekerReducer } = addSeekerSlice;

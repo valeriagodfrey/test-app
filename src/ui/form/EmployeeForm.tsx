@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 import { AddEmployeeProps } from "../../modules/employee/interfaces/employeeInterfaces";
-import { addSeeker } from "../../modules/seekers/slice";
+import { addEmployee } from "../../modules/employee/slice";
 import { Button } from "../button/Button";
 import { CustomInput } from "../input/Input";
 import { gender, IOption, months, years } from "../select/data";
@@ -31,7 +31,7 @@ export const EmployeeForm = ({ onClick }: Props) => {
   const onSubmit = (data: AddEmployeeProps) => {
     if (Object.keys(errors).length === 0) {
       data.id = uuidv4();
-      dispatch(addSeeker(data));
+      dispatch(addEmployee(data));
       onClick?.();
     }
   };

@@ -1,13 +1,16 @@
 import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { rememberTab } from "../../modules/seekers/slice";
 import { tabsList } from "../header/data";
 import { InvoicesHeader } from "../header/InvoicesHeader";
 import { PageHeader } from "../header/PageHeader";
 import { Sidebar } from "../sidebar/Sidebar";
 
 export const Layout: FC = ({ children }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
 
@@ -20,7 +23,11 @@ export const Layout: FC = ({ children }) => {
             <InvoicesHeader>
               {tabsList.map((tab) => (
                 <Tab
-                  onClick={() => setActiveTab(tab.value)}
+                  key={tab.value}
+                  onClick={() => {
+                    setActiveTab(tab.value);
+                    dispatch(rememberTab(tab.value));
+                  }}
                   active={activeTab === tab.value && true}
                 >
                   {tab.label}
