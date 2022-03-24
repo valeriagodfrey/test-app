@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { ChangePasswordForm } from "../form/ChangePasswordForm";
 import { EmployeeForm } from "../form/EmployeeForm";
 import { SeekerForm } from "../form/SeekerForm";
 
@@ -20,7 +21,7 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
           ) : type === "employee" ? (
             <EmployeeForm visible={visible} onClick={onClick} />
           ) : (
-            ""
+            <ChangePasswordForm visible={visible} onClick={onClick} />
           )}
         </Menu>
       </Container>

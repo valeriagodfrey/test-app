@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Button } from "../common/ui/button/Button";
 import { Drawer } from "../common/ui/drawer/Drawer";
 import { Layout } from "../common/ui/layout/Layout";
+import { store } from "../core/redux/store";
 import { getCurrentUserSelector, getUsersSelector } from "../modules/authorisation/selectors";
 
 export const Cabinet = () => {
@@ -16,6 +17,9 @@ export const Cabinet = () => {
   const currentUser = users.list.filter(
     (item) => item.email === authUser.email && item.password === authUser.password,
   );
+
+  console.log(store.getState());
+
   return (
     <Layout>
       <Container>
@@ -33,7 +37,7 @@ export const Cabinet = () => {
               </Label>
             </User>
             <div>
-              <Button>Сменить пароль</Button>
+              <Button onClick={() => setShow((s) => !s)}>Сменить пароль</Button>
             </div>
           </UserContainer>
         ))}

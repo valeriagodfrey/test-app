@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { StyledToastContainer } from "./common/ui/notification/Notification";
 import { persistor, store } from "./core/redux/store";
 import { Authorization } from "./pages/Authorization";
 import { Cabinet } from "./pages/Cabinet";
@@ -19,7 +20,6 @@ import { Reports } from "./pages/Reports";
 import { Settings } from "./pages/Settings";
 import { Templates } from "./pages/Templates";
 import { Users } from "./pages/Users";
-import { StyledToastContainer } from "./ui/notification/Notification";
 
 function App() {
   return (

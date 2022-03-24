@@ -46,6 +46,14 @@ export const signUpSlice = createSlice({
         return item;
       });
     },
+    changePassword: (state, action) => {
+      state.list = state.list.map((item) => {
+        item.password =
+          item.password === action.payload.oldPassword ? action.payload.newPassword : item.password;
+        item.password2 = item.password;
+        return item;
+      });
+    },
   },
 });
 
@@ -60,7 +68,7 @@ export const rememberEmailSlice = createSlice({
 });
 
 export const { signIn, signOut } = signInSlice.actions;
-export const { signUp, deleteUser, passwordRecovery } = signUpSlice.actions;
+export const { signUp, deleteUser, passwordRecovery, changePassword } = signUpSlice.actions;
 export const { rememberEmail } = rememberEmailSlice.actions;
 
 export const { reducer: signInReducer } = signInSlice;

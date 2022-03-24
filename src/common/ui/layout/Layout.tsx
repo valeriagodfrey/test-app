@@ -60,7 +60,8 @@ const RightContainer = styled.div`
 const ContentContainer = styled.div`
   padding: 24px;
   background: #f0f2f5;
-  height: calc(100vh - 124px);
+  height: 100vh;
+  margin: 124px 0px 0px 200px;
 `;
 
 const Content = styled.div`

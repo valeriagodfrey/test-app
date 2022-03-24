@@ -94,6 +94,10 @@ export const Sidebar = () => {
 };
 const Container = styled.div`
   display: none;
+  position: fixed;
+  z-index: 50;
+  max-width: 200px;
+  background-color: #fff;
   ${media.desktop} {
     display: flex;
     width: 14%;
