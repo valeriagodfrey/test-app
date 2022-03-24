@@ -2,17 +2,18 @@ export const TRANSLATIONS_EN = {
   requiredField: "Required field",
   passwordValidation: "Password must be between 8 and 64 signs",
   passwordInput: "Password",
+  signOut: "Sign out",
+  signIn: "Sign in",
+  signUp: "Sign up",
 
   authPage: {
     titleAuth: "HR processes are automated, welcome back!",
     changeLang: "Change language to",
     noAcc: "Don't have an account?",
-    signUp: "Sign up",
     loginStaffPro: "Login to Staff Pro",
     emailInput: "Email",
     rememberMe: "Remember me",
     forgotPassword: "Forgot password?",
-    signInButton: "Sign In",
   },
   registerPage: {
     titleRegister: "Register",
@@ -27,5 +28,14 @@ export const TRANSLATIONS_EN = {
     numberValidation: "This number doesn't exist",
     gender: "Gender",
     agreementValidation: "To register you must accept the terms of the agreement",
+    agreementPart1: "I agree with",
+    agreementLink1: "the user agreement",
+    agreementPart2: " and",
+    agreementLink2: "the policy of processing personal data of users",
+    signUpButton: "Create an account",
+    haveAccount: "Already have an account?",
+  },
+  changePasswordForm: {
+    title: "Смена пароля",
   },
 };

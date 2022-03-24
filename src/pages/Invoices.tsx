@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { store } from "../core/redux/store";
+import { Button } from "../common/ui/button/Button";
 import { getEmployeeSelector } from "../modules/employee/selectors";
 import { getCurrentTabSelector, getSeekersSelector } from "../modules/seekers/selectors";
 import { deleteSeeker } from "../modules/seekers/slice";
-import { Button } from "../ui/button/Button";
 import { Layout } from "../ui/layout/Layout";
 
 export const Invoices = () => {
@@ -16,7 +15,9 @@ export const Invoices = () => {
   const currentTab = useSelector(getCurrentTabSelector);
 
   const allApplications = employee.list.concat(seekers.list);
-  console.log(store.getState());
+  const deleteFromAll = (id: string) => {
+    return allApplications.filter((item) => item.id !== id);
+  };
 
   return (
     <Layout>
@@ -35,7 +36,7 @@ export const Invoices = () => {
                   <Label>ID: {item.id}</Label>
                 </SeekerContainer>
                 <ButtonContainer>
-                  <Button styleType="secondary" onClick={() => dispatch(deleteSeeker(item.id))}>
+                  <Button styleType="secondary" onClick={() => deleteFromAll(item.id)}>
                     Удалить
                   </Button>
                 </ButtonContainer>

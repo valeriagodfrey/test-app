@@ -10,7 +10,7 @@ import styled from "styled-components";
 import signInImage from "../assets/images/signIn.png";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { signIn } from "../modules/authorisation/slice";
-import { Button } from "../ui/button/Button";
+import { Button } from "../common/ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";
 import { CustomInput } from "../ui/input/Input";
@@ -66,7 +66,7 @@ export const Authorization = () => {
           <HeaderLine>
             <SignUp>
               {t("authPage.noAcc")}
-              <ILink to="/registration"> {t("authPage.signUp")}</ILink>
+              <ILink to="/registration"> {t("signUp")}</ILink>
             </SignUp>
           </HeaderLine>
           <SignInContainer>
@@ -116,7 +116,7 @@ export const Authorization = () => {
                 />
                 <ILink to="/forgot_password">{t("authPage.forgotPassword")}</ILink>
               </Line>
-              <Button size="big">{t("authPage.signInButton")}</Button>
+              <Button size="big">{t("signIn")}</Button>
             </SignInForm>
           </SignInContainer>
         </Content>

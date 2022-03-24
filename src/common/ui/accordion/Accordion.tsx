@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
-import { DropdownArrow } from "../../assets/icons/DropdownArrow";
+import { DropdownArrow } from "../../../assets/icons/DropdownArrow";
 
 interface Props {
   label: string;

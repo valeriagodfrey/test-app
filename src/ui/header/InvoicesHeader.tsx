@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import styled from "styled-components";
 
 import { PlusIcon } from "../../assets/icons/PlusIcon";
-import { Button } from "../button/Button";
+import { Button } from "../../common/ui/button/Button";
 import { Drawer } from "../drawer/Drawer";
 
 export const InvoicesHeader: FC = ({ children }) => {

@@ -1,17 +1,19 @@
 import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { getCurrentUserSelector } from "../../modules/authorisation/selectors";
 import { signOut } from "../../modules/authorisation/slice";
-import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
-import { Button } from "../button/Button";
+import { Breadcrumbs } from "../../common/ui/breadcrumbs/Breadcrumbs";
+import { Button } from "../../common/ui/button/Button";
 
 export const PageHeader: FC = ({ children }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const title =
     location.pathname.substring(location.pathname.lastIndexOf("/") + 1)[0].toUpperCase() +
@@ -46,7 +48,7 @@ export const PageHeader: FC = ({ children }) => {
                 navigate("/authorization");
               }}
             >
-              Выйти
+              {t("signOut")}
             </Button>
           </User>
         </Line>

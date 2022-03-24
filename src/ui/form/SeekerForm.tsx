@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
+import { Button } from "../../common/ui/button/Button";
 import { AddSeekerProps } from "../../modules/seekers/interfaces/seekerInterfaces";
 import { addSeeker } from "../../modules/seekers/slice";
-import { Button } from "../button/Button";
 import { CustomInput } from "../input/Input";
 import { gender, IOption, months, years } from "../select/data";
 import { CustomSelect } from "../select/Select";
 
 interface Props {
   onClick?: () => void;
+  visible?: boolean;
 }
-export const SeekerForm = ({ onClick }: Props) => {
+export const SeekerForm = ({ visible, onClick }: Props) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -22,10 +23,18 @@ export const SeekerForm = ({ onClick }: Props) => {
     control,
     getValues,
     handleSubmit,
+    reset,
   } = useForm<AddSeekerProps>();
 
   const day = getValues("day");
   const phoneNumber = getValues("number");
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
 
   const onSubmit = (data: AddSeekerProps) => {
     if (Object.keys(errors).length === 0) {

@@ -6,9 +6,9 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 import { media } from "../assets/media";
+import { Button } from "../common/ui/button/Button";
 import { store } from "../core/redux/store";
 import { signUp } from "../modules/authorisation/slice";
-import { Button } from "../ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
@@ -212,14 +212,17 @@ export const Registration = () => {
                 errors.check?.type === "required" ? `${t("registerPage.agreementValidation")}` : ""
               }
             >
-              Я согласен с <ILink to="/agreement"> пользовательским соглашением</ILink> и
-              <ILink to="/politics"> политикой обработки персональных данных пользователей</ILink>
+              {t("registerPage.agreementPart1")}
+              <ILink to="/agreement"> {t("registerPage.agreementLink1")}</ILink>
+              {t("registerPage.agreementPart2")}
+              <ILink to="/politics"> {t("registerPage.agreementLink2")}</ILink>
             </Checkbox>
           )}
         />
-        <Button size="big">Создать аккаунт</Button>
+        <Button size="big">{t("registerPage.signUpButton")}</Button>
         <Label position="center">
-          Уже есть аккаунт? <ILink to="/authorization">Войдите</ILink>
+          {t("registerPage.haveAccount")}
+          <ILink to="/authorization"> {t("signIn")}</ILink>
         </Label>
       </Form>
     </WrapperContainer>

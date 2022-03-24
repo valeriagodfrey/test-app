@@ -6,6 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { persistor, store } from "./core/redux/store";
 import { Authorization } from "./pages/Authorization";
+import { Cabinet } from "./pages/Cabinet";
 import { Dashboard } from "./pages/Dashboard";
 import { Drafts } from "./pages/Drafts";
 import { ForgotPassword } from "./pages/ForgotPassword";
@@ -49,8 +50,9 @@ function App() {
             <Route path="/documents/drafts" element={<Drafts />} />
             <Route path="/documents/templates" element={<Templates />} />
             <Route path="/customers/users" element={<Users />} />
+            <Route path="/customers/cabinet" element={<Cabinet />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
-            <Route path="/password_recovery" element={<PasswordRecovery />} />{" "}
+            <Route path="/password_recovery" element={<PasswordRecovery />} />
             <Route path="*" element={<Navigate to="/authorization" />} />
           </Routes>
         </BrowserRouter>

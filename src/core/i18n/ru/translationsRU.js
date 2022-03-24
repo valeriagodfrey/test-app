@@ -2,6 +2,7 @@ export const TRANSLATIONS_RU = {
   requiredField: "Обязательное поле",
   passwordValidation: "Пароль должен содержать от 8 до 64 символов",
   passwordInput: "Пароль",
+  signOutButton: "Выйти",
 
   authPage: {
     titleAuth: "HR-процессы автоматизированы, с возвращением!",
@@ -27,5 +28,15 @@ export const TRANSLATIONS_RU = {
     numberValidation: "Такого номера не существует",
     gender: "Пол",
     agreementValidation: "Для регистрации необходимо принять условия соглашения",
+    agreementPart1: "Я согласен с",
+    agreementLink1: "пользовательским соглашением",
+    agreementPart2: " и",
+    agreementLink2: "политикой обработки персональных данных пользователей",
+    signUpButton: "Создать аккаунт",
+    haveAccount: "Уже есть аккаунт?",
+    signInLink: "Войдите",
+  },
+  changePasswordForm: {
+    title: "Смена пароля",
   },
 };

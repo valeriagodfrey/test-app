@@ -8,8 +8,7 @@ import { HelpIcon } from "../../assets/icons/HelpIcon";
 import { ReportsIcon } from "../../assets/icons/ReportsIcon";
 import { SettingsIcon } from "../../assets/icons/SettingsIcon";
 import { media } from "../../assets/media";
-import { Accordion } from "../accordion/Accordion";
-
+import { Accordion } from "../../common/ui/accordion/Accordion";
 export const Sidebar = () => {
   const navigate = useNavigate();
   return (
@@ -63,9 +62,9 @@ export const Sidebar = () => {
                     <Label>Users</Label>
                   </Box>
                 </Option>
-                <Option onClick={() => navigate("/customers/drafts")}>
+                <Option onClick={() => navigate("/customers/cabinet")}>
                   <Box>
-                    <Label>Drafts</Label>
+                    <Label>Cabinet</Label>
                   </Box>
                 </Option>
                 <Option onClick={() => navigate("/customers/templates")}>
