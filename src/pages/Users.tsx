@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { Button } from "../common/ui/button/Button";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { deleteUser } from "../modules/authorisation/slice";
-import { Button } from "../ui/button/Button";
 import { Layout } from "../ui/layout/Layout";
 
 export const Users = () => {

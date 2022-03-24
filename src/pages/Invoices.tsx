@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Button } from "../common/ui/button/Button";
-import { getEmployeeSelector } from "../modules/employee/selectors";
+import { getAllListSelector, getEmployeeSelector } from "../modules/employee/selectors";
+import { addList, deleteEmployee, deleteOnePosition } from "../modules/employee/slice";
 import { getCurrentTabSelector, getSeekersSelector } from "../modules/seekers/selectors";
 import { deleteSeeker } from "../modules/seekers/slice";
 import { Layout } from "../ui/layout/Layout";
@@ -14,16 +16,19 @@ export const Invoices = () => {
   const employee = useSelector(getEmployeeSelector);
   const currentTab = useSelector(getCurrentTabSelector);
 
-  const allApplications = employee.list.concat(seekers.list);
-  const deleteFromAll = (id: string) => {
-    return allApplications.filter((item) => item.id !== id);
-  };
+  const allApplications = seekers.list.concat(employee.list);
+  const allList = useSelector(getAllListSelector);
+
+  useEffect(() => {
+    dispatch(addList(allApplications));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   return (
     <Layout>
       <Content>
         {currentTab.currentTab === "all"
-          ? allApplications.map((item) => (
+          ? allList.list.map((item) => (
               <Seeker key={item.id}>
                 <SeekerContainer>
                   <Label>Фамилия: {item.surname}</Label>
@@ -36,7 +41,13 @@ export const Invoices = () => {
                   <Label>ID: {item.id}</Label>
                 </SeekerContainer>
                 <ButtonContainer>
-                  <Button styleType="secondary" onClick={() => deleteFromAll(item.id)}>
+                  <Button
+                    styleType="secondary"
+                    onClick={() => {
+                      dispatch(deleteOnePosition(item.id));
+                      dispatch(item.position ? deleteEmployee(item.id) : deleteSeeker(item.id));
+                    }}
+                  >
                     Удалить
                   </Button>
                 </ButtonContainer>
@@ -76,7 +87,7 @@ export const Invoices = () => {
                   <Label>ID: {item.id}</Label>
                 </SeekerContainer>
                 <ButtonContainer>
-                  <Button styleType="secondary" onClick={() => dispatch(deleteSeeker(item.id))}>
+                  <Button styleType="secondary" onClick={() => dispatch(deleteEmployee(item.id))}>
                     Удалить
                   </Button>
                 </ButtonContainer>

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
+import { Button } from "../common/ui/button/Button";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { rememberEmail } from "../modules/authorisation/slice";
-import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
 import { ILink } from "../ui/link/Link";
 

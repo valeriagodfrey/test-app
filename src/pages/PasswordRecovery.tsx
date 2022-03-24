@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 
+import { Button } from "../common/ui/button/Button";
 import { store } from "../core/redux/store";
 import { getEmailSelector } from "../modules/authorisation/selectors";
 import { passwordRecovery } from "../modules/authorisation/slice";
-// import { changePassword } from "../features/user";
-import { Button } from "../ui/button/Button";
 import { CustomInput } from "../ui/input/Input";
 
 interface Props {

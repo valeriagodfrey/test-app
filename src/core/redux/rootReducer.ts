@@ -5,7 +5,7 @@ import {
   signInReducer,
   signUpReducer,
 } from "../../modules/authorisation/slice";
-import { addEmployeeReducer } from "../../modules/employee/slice";
+import { addEmployeeReducer, allListReducer } from "../../modules/employee/slice";
 import { addSeekerReducer, rememberTabReducer } from "../../modules/seekers/slice";
 
 export const rootReducer = combineReducers({
@@ -15,4 +15,5 @@ export const rootReducer = combineReducers({
   addSeeker: addSeekerReducer,
   addEmployee: addEmployeeReducer,
   rememberTab: rememberTabReducer,
+  allList: allListReducer,
 });

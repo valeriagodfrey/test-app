@@ -26,6 +26,21 @@ export const addEmployeeSlice = createSlice({
   },
 });
 
+export const allListSlice = createSlice({
+  name: "allList",
+  initialState: initialStateAddEmployee,
+  reducers: {
+    addList: (state, action) => {
+      state.list = action.payload;
+    },
+    deleteOnePosition: (state, action) => {
+      state.list = state.list.filter((item) => item.id !== action.payload);
+    },
+  },
+});
+
 export const { addEmployee, clearList, deleteEmployee } = addEmployeeSlice.actions;
+export const { addList, deleteOnePosition } = allListSlice.actions;
 
 export const { reducer: addEmployeeReducer } = addEmployeeSlice;
+export const { reducer: allListReducer } = allListSlice;

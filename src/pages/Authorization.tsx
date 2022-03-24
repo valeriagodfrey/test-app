@@ -8,9 +8,10 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
+import { Button } from "../common/ui/button/Button";
+import { store } from "../core/redux/store";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { signIn } from "../modules/authorisation/slice";
-import { Button } from "../common/ui/button/Button";
 import { Checkbox } from "../ui/checkbox/Checkbox";
 import { Header } from "../ui/header/Header";
 import { CustomInput } from "../ui/input/Input";
@@ -33,6 +34,7 @@ export const Authorization = () => {
     getValues,
     handleSubmit,
   } = useForm<AuthProps>();
+  console.log(store.getState());
 
   const users = useSelector(getUsersSelector);
 
