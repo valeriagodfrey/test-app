@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { Button } from "../common/ui/button/Button";
+import { CustomInput } from "../common/ui/input/Input";
 import { store } from "../core/redux/store";
 import { getEmailSelector } from "../modules/authorisation/selectors";
 import { passwordRecovery } from "../modules/authorisation/slice";
-import { CustomInput } from "../ui/input/Input";
 
 interface Props {
   password: string;

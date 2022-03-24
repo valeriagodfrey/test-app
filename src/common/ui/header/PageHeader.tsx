@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { getCurrentUserSelector } from "../../modules/authorisation/selectors";
-import { signOut } from "../../modules/authorisation/slice";
-import { Breadcrumbs } from "../../common/ui/breadcrumbs/Breadcrumbs";
-import { Button } from "../../common/ui/button/Button";
+import { getCurrentUserSelector } from "../../../modules/authorisation/selectors";
+import { signOut } from "../../../modules/authorisation/slice";
+import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
+import { Button } from "../button/Button";
 
 export const PageHeader: FC = ({ children }) => {
   const dispatch = useDispatch();

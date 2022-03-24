@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Button } from "../common/ui/button/Button";
+import { Layout } from "../common/ui/layout/Layout";
 import { getAllListSelector, getEmployeeSelector } from "../modules/employee/selectors";
 import { addList, deleteEmployee, deleteOnePosition } from "../modules/employee/slice";
 import { getCurrentTabSelector, getSeekersSelector } from "../modules/seekers/selectors";
 import { deleteSeeker } from "../modules/seekers/slice";
-import { Layout } from "../ui/layout/Layout";
 
 export const Invoices = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const Invoices = () => {
   useEffect(() => {
     dispatch(addList(allApplications));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [seekers, employee, dispatch]);
 
   return (
     <Layout>

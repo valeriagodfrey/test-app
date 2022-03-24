@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { LangIcon } from "../../assets/icons/LangIcon";
-import i18n from "../../core/i18n/i18n";
+import { LangIcon } from "../../../assets/icons/LangIcon";
+import i18n from "../../../core/i18n/i18n";
 import { LangSelect } from "../select/LangSelect";
 
 export const Header = () => {

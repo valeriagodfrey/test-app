@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { getCurrentUserSelector, getUsersSelector } from "../modules/authorisation/selectors";
 import { Button } from "../common/ui/button/Button";
-import { Drawer } from "../ui/drawer/Drawer";
-import { Layout } from "../ui/layout/Layout";
+import { Drawer } from "../common/ui/drawer/Drawer";
+import { Layout } from "../common/ui/layout/Layout";
+import { getCurrentUserSelector, getUsersSelector } from "../modules/authorisation/selectors";
 
 export const Cabinet = () => {
   const [show, setShow] = useState(false);

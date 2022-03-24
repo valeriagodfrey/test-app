@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { CheckIcon } from "../../assets/icons/CheckIcon";
+import { CheckIcon } from "../../../assets/icons/CheckIcon";
 import { CustomError } from "../error/Error";
 
 interface Props {

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-import { rememberTab } from "../../modules/seekers/slice";
+import { rememberTab } from "../../../modules/seekers/slice";
 import { tabsList } from "../header/data";
 import { InvoicesHeader } from "../header/InvoicesHeader";
 import { PageHeader } from "../header/PageHeader";

@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { CustomersIcon } from "../../assets/icons/CustomersIcon";
-import { DashboardIcon } from "../../assets/icons/DashboardIcon";
-import { DocumentsIcon } from "../../assets/icons/DocumentsIcon";
-import { HelpIcon } from "../../assets/icons/HelpIcon";
-import { ReportsIcon } from "../../assets/icons/ReportsIcon";
-import { SettingsIcon } from "../../assets/icons/SettingsIcon";
-import { media } from "../../assets/media";
-import { Accordion } from "../../common/ui/accordion/Accordion";
+import { CustomersIcon } from "../../../assets/icons/CustomersIcon";
+import { DashboardIcon } from "../../../assets/icons/DashboardIcon";
+import { DocumentsIcon } from "../../../assets/icons/DocumentsIcon";
+import { HelpIcon } from "../../../assets/icons/HelpIcon";
+import { ReportsIcon } from "../../../assets/icons/ReportsIcon";
+import { SettingsIcon } from "../../../assets/icons/SettingsIcon";
+import { media } from "../../../assets/media";
+import { Accordion } from "../accordion/Accordion";
 export const Sidebar = () => {
   const navigate = useNavigate();
   return (

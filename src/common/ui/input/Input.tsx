@@ -1,7 +1,7 @@
 import React, { forwardRef, InputHTMLAttributes, useState } from "react";
 import styled from "styled-components";
 
-import { EyeIconNew } from "../../assets/icons/EyeIconNew";
+import { EyeIconNew } from "../../../assets/icons/EyeIconNew";
 import { CustomError } from "../error/Error";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

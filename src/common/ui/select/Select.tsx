@@ -8,7 +8,7 @@ import Select, {
 } from "react-select";
 import styled from "styled-components";
 
-import { SelectArrowIcon } from "../../assets/icons/SelectArrowIcon";
+import { SelectArrowIcon } from "../../../assets/icons/SelectArrowIcon";
 import { CustomError } from "../error/Error";
 import { IOption, months } from "./data";
 

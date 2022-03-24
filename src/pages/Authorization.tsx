@@ -9,13 +9,12 @@ import styled from "styled-components";
 
 import signInImage from "../assets/images/signIn.png";
 import { Button } from "../common/ui/button/Button";
-import { store } from "../core/redux/store";
+import { Checkbox } from "../common/ui/checkbox/Checkbox";
+import { Header } from "../common/ui/header/Header";
+import { CustomInput } from "../common/ui/input/Input";
+import { ILink } from "../common/ui/link/Link";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { signIn } from "../modules/authorisation/slice";
-import { Checkbox } from "../ui/checkbox/Checkbox";
-import { Header } from "../ui/header/Header";
-import { CustomInput } from "../ui/input/Input";
-import { ILink } from "../ui/link/Link";
 
 export interface AuthProps {
   email: string;
@@ -34,7 +33,6 @@ export const Authorization = () => {
     getValues,
     handleSubmit,
   } = useForm<AuthProps>();
-  console.log(store.getState());
 
   const users = useSelector(getUsersSelector);
 

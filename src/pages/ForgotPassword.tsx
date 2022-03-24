@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import { Button } from "../common/ui/button/Button";
+import { CustomInput } from "../common/ui/input/Input";
+import { ILink } from "../common/ui/link/Link";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { rememberEmail } from "../modules/authorisation/slice";
-import { CustomInput } from "../ui/input/Input";
-import { ILink } from "../ui/link/Link";
 
 interface Props {
   email: string;

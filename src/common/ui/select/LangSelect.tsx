@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import i18n from "../../core/i18n/i18n";
+import i18n from "../../../core/i18n/i18n";
 import { languages } from "./data";
 
 export const LangSelect = () => {

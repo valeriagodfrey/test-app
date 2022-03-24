@@ -7,13 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 
 import { media } from "../assets/media";
 import { Button } from "../common/ui/button/Button";
+import { Checkbox } from "../common/ui/checkbox/Checkbox";
+import { CustomInput } from "../common/ui/input/Input";
+import { ILink } from "../common/ui/link/Link";
+import { gender, IOption, months, years } from "../common/ui/select/data";
+import { CustomSelect } from "../common/ui/select/Select";
 import { store } from "../core/redux/store";
 import { signUp } from "../modules/authorisation/slice";
-import { Checkbox } from "../ui/checkbox/Checkbox";
-import { CustomInput } from "../ui/input/Input";
-import { ILink } from "../ui/link/Link";
-import { gender, IOption, months, years } from "../ui/select/data";
-import { CustomSelect } from "../ui/select/Select";
 
 export interface RegisterProps {
   id: string;
