@@ -95,7 +95,7 @@ export const Sidebar = () => {
 const Container = styled.div`
   display: none;
   position: fixed;
-  z-index: 50;
+  z-index: 0;
   max-width: 200px;
   background-color: #fff;
   ${media.desktop} {

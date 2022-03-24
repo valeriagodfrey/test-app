@@ -53,19 +53,20 @@ export const CustomSelect = ({ placeholder, type = "default", error, options, ..
           <SelectArrowIcon />
         </Icon> */}
       </SelectContainer>
-      <CustomError error={error} />
+      <ErrorContainer>
+        <CustomError error={error} />
+      </ErrorContainer>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: 40px;
+  height: 82px;
   position: relative;
   display: flex;
   flex-direction: column;
   width: auto;
   max-width: 600px;
-  margin-bottom: 24px;
 `;
 
 const SelectContainer = styled.div`
@@ -73,6 +74,7 @@ const SelectContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  position: relative;
 `;
 
 const Styles: StylesConfig<IOption> = {
@@ -81,6 +83,7 @@ const Styles: StylesConfig<IOption> = {
     border: isFocused ? 0 : `1px solid #D9D9D9 `,
     borderRadius: "2px",
     cursor: "pointer",
+    height: "40px",
     padding: `1px`,
     alignItems: "center",
     display: "flex",
@@ -178,3 +181,9 @@ const StylesLang: StylesConfig<IOption> = {
     },
   }),
 };
+
+const ErrorContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 24px;
+`;

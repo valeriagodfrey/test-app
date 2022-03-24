@@ -52,13 +52,13 @@ export const ChangePasswordForm = ({ onClick, visible }: Props) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormHeader>
-        <Title>Смена пароля</Title>
+        <Title>{t("changePasswordForm.title")}</Title>
       </FormHeader>
       <FormContainer>
         <CustomInput
           type="password"
           withLabel
-          label="Старый пароль"
+          label={t("changePasswordForm.oldPassword")}
           {...register("oldPassword", {
             required: true,
             validate: () =>
@@ -75,7 +75,7 @@ export const ChangePasswordForm = ({ onClick, visible }: Props) => {
         <CustomInput
           type="password"
           withLabel
-          label="Новый пароль"
+          label={t("changePasswordForm.newPassword")}
           {...register("newPassword", {
             required: true,
             validate: () =>
@@ -92,7 +92,7 @@ export const ChangePasswordForm = ({ onClick, visible }: Props) => {
         <CustomInput
           type="password"
           withLabel
-          label="Подтверждение нового пароля"
+          label={t("changePasswordForm.newPassword2")}
           {...register("newPassword2", {
             required: true,
             validate: () => getValues("newPassword2") === getValues("newPassword"),
@@ -113,9 +113,9 @@ export const ChangePasswordForm = ({ onClick, visible }: Props) => {
           type="button"
           onClick={onClick}
         >
-          Отмена
+          {t("cancel")}
         </Button>
-        <Button type="submit">Изменить пароль</Button>
+        <Button type="submit">{t("changePasswordForm.changePassword")}</Button>
       </ButtonsLine>
     </Form>
   );

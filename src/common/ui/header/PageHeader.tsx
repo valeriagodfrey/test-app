@@ -63,7 +63,7 @@ const Container = styled.div`
   padding: 11px 22px 0px;
   background-color: #ffff;
   position: fixed;
-
+  z-index: -1;
   flex-direction: column;
   display: flex;
   right: 0;

@@ -33,8 +33,9 @@ const Container = styled.div<{ visible?: boolean }>`
   right: ${({ visible }) => (visible ? "0" : "-50vw")};
   top: 0;
   bottom: 0;
-  z-index: 101;
+  z-index: 1001;
   transition: 0.5s ease;
+  width: 444px;
 `;
 
 const Menu = styled.div`
@@ -48,7 +49,7 @@ const Area = styled.div<{ visible?: boolean }>`
   display: ${({ visible }) => (visible ? "flex" : "none")};
   background-color: rgba(89, 88, 88, 0.6);
   transition: background-color 1700ms ease-in-out;
-  z-index: 100;
+  z-index: 1000;
   position: fixed;
   top: 0;
   bottom: 0;

@@ -5,6 +5,7 @@ export const TRANSLATIONS_EN = {
   signOut: "Sign out",
   signIn: "Sign in",
   signUp: "Sign up",
+  cancel: "Cancel",
 
   authPage: {
     titleAuth: "HR processes are automated, welcome back!",
@@ -36,6 +37,10 @@ export const TRANSLATIONS_EN = {
     haveAccount: "Already have an account?",
   },
   changePasswordForm: {
-    title: "Смена пароля",
+    title: "Сhange the password",
+    oldPassword: "Old password",
+    newPassword: "New password",
+    newPassword2: "New password confirmation",
+    changePassword: "Change password",
   },
 };

@@ -26,7 +26,9 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
           </Icon>
         )}
       </InputContainer>
-      <CustomError error={params.error} />
+      <ErrorContainer>
+        <CustomError error={params.error} />
+      </ErrorContainer>
     </Container>
   );
 });
@@ -37,8 +39,8 @@ const Container = styled.div`
   flex-direction: column;
   width: auto;
   max-width: 600px;
-  margin-bottom: 24px;
   cursor: pointer;
+  height: 80px;
 `;
 
 const InputContainer = styled.div`
@@ -46,6 +48,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  position: relative;
 `;
 
 const Input = styled.input<{ error?: string }>`
@@ -80,4 +83,10 @@ const Label = styled.div`
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 2px;
+`;
+
+const ErrorContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
 `;

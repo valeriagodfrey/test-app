@@ -46,111 +46,117 @@ export const EmployeeForm = ({ onClick, visible }: Props) => {
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormHeader>
-        <Title>Пригласить сотрудника</Title>
-      </FormHeader>
-      <FormContainer>
-        <CustomInput
-          type="email"
-          placeholder="Email"
-          {...register("email", { required: true })}
-          error={errors.email?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <CustomInput
-          placeholder="Фамилия"
-          {...register("surname", { required: true })}
-          error={errors.surname?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <CustomInput
-          placeholder="Имя"
-          {...register("name", { required: true })}
-          error={errors.name?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <CustomInput
-          placeholder="Отчество"
-          {...register("patronymic", { required: true })}
-          error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <CustomInput
-          placeholder="Должность"
-          {...register("position", { required: true })}
-          error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
-        />
-        <Label>Дата рождения</Label>
-        <Box>
+      <Block>
+        <FormHeader>
+          <Title>Пригласить сотрудника</Title>
+        </FormHeader>
+        <FormContainer>
           <CustomInput
-            placeholder="День"
-            {...register("day", { required: true })}
+            type="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
+            error={errors.email?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <CustomInput
+            placeholder="Фамилия"
+            {...register("surname", { required: true })}
+            error={errors.surname?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <CustomInput
+            placeholder="Имя"
+            {...register("name", { required: true })}
+            error={errors.name?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <CustomInput
+            placeholder="Отчество"
+            {...register("patronymic", { required: true })}
+            error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <CustomInput
+            placeholder="Должность"
+            {...register("position", { required: true })}
+            error={errors.patronymic?.type === "required" ? "Обязательное поле" : ""}
+          />
+          <Label>Дата рождения</Label>
+          <Box>
+            <CustomInput
+              placeholder="День"
+              {...register("day", { required: true })}
+              error={
+                errors.number && errors.day?.type === "required"
+                  ? "Обязательное поле"
+                  : errors.number && (Number(day) >= 32 || Number(day) < 1)
+                  ? "Введите верное число"
+                  : ""
+              }
+            />
+            <Controller
+              name="month"
+              control={control}
+              rules={{ required: true }}
+              render={(props) => (
+                <CustomSelect
+                  placeholder="Месяц"
+                  options={months}
+                  value={(months || []).filter((i) => i.value === props.field.value)[0]}
+                  onChange={(value) => props.field.onChange((value as IOption).value)}
+                  error={
+                    errors.month && errors.month?.type === "required" ? "Обязательное поле" : ""
+                  }
+                />
+              )}
+            />
+            <Controller
+              name="year"
+              control={control}
+              rules={{ required: true }}
+              render={(props) => (
+                <CustomSelect
+                  placeholder="Год"
+                  options={years}
+                  value={(years || []).filter((i) => i.value === props.field.value)[0]}
+                  onChange={(value) => props.field.onChange((value as IOption).value)}
+                  error={errors.year && errors.year?.type === "required" ? "Обязательное поле" : ""}
+                />
+              )}
+            />
+          </Box>
+
+          <CustomInput
+            type="tel"
+            placeholder="Телефон (опционально)"
+            {...register("number", {
+              required: true,
+              maxLength: 10,
+              minLength: 10,
+            })}
             error={
-              errors.number && errors.day?.type === "required"
-                ? "Обязательное поле"
-                : errors.number && (Number(day) >= 32 || Number(day) < 1)
-                ? "Введите верное число"
+              errors.number &&
+              (errors.number?.type === "required" ||
+                String(phoneNumber).length > 10 ||
+                String(phoneNumber).length < 10)
+                ? "Такого номера не существует"
                 : ""
             }
           />
           <Controller
-            name="month"
+            name="gender"
             control={control}
             rules={{ required: true }}
             render={(props) => (
               <CustomSelect
-                placeholder="Месяц"
-                options={months}
-                value={(months || []).filter((i) => i.value === props.field.value)[0]}
+                placeholder="Пол"
+                options={gender}
+                value={(gender || []).filter((i) => i.value === props.field.value)[0]}
                 onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={errors.month && errors.month?.type === "required" ? "Обязательное поле" : ""}
+                error={
+                  errors.gender && errors.gender.type === "required" ? "Обязательное поле" : ""
+                }
               />
             )}
           />
-          <Controller
-            name="year"
-            control={control}
-            rules={{ required: true }}
-            render={(props) => (
-              <CustomSelect
-                placeholder="Год"
-                options={years}
-                value={(years || []).filter((i) => i.value === props.field.value)[0]}
-                onChange={(value) => props.field.onChange((value as IOption).value)}
-                error={errors.year && errors.year?.type === "required" ? "Обязательное поле" : ""}
-              />
-            )}
-          />
-        </Box>
-
-        <CustomInput
-          type="tel"
-          placeholder="Телефон (опционально)"
-          {...register("number", {
-            required: true,
-            maxLength: 10,
-            minLength: 10,
-          })}
-          error={
-            errors.number &&
-            (errors.number?.type === "required" ||
-              String(phoneNumber).length > 10 ||
-              String(phoneNumber).length < 10)
-              ? "Такого номера не существует"
-              : ""
-          }
-        />
-        <Controller
-          name="gender"
-          control={control}
-          rules={{ required: true }}
-          render={(props) => (
-            <CustomSelect
-              placeholder="Пол"
-              options={gender}
-              value={(gender || []).filter((i) => i.value === props.field.value)[0]}
-              onChange={(value) => props.field.onChange((value as IOption).value)}
-              error={errors.gender && errors.gender.type === "required" ? "Обязательное поле" : ""}
-            />
-          )}
-        />
-      </FormContainer>
+        </FormContainer>
+      </Block>
       <ButtonsLine>
         <Button
           style={{ marginRight: `8px` }}
@@ -166,7 +172,12 @@ export const EmployeeForm = ({ onClick, visible }: Props) => {
   );
 };
 
-const Form = styled.form``;
+const Form = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 const FormHeader = styled.div`
   padding: 16px 30px;
@@ -193,7 +204,7 @@ const Label = styled.div`
 
 const Box = styled.div`
   display: grid;
-  grid-template-columns: 74px 1fr 100px;
+  grid-template-columns: 80px 1fr 100px;
   grid-gap: 16px;
 `;
 
@@ -203,3 +214,5 @@ const ButtonsLine = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+
+const Block = styled.div``;

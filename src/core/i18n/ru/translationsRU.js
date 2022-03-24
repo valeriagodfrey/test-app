@@ -2,13 +2,15 @@ export const TRANSLATIONS_RU = {
   requiredField: "Обязательное поле",
   passwordValidation: "Пароль должен содержать от 8 до 64 символов",
   passwordInput: "Пароль",
-  signOutButton: "Выйти",
+  signOut: "Выйти",
+  signIn: "Войти",
+  signUp: "Зарегистрироваться",
+  cancel: "Отмена",
 
   authPage: {
     titleAuth: "HR-процессы автоматизированы, с возвращением!",
     changeLang: "Сменить язык на",
     noAcc: "Нет аккаунта?",
-    signUp: "Зарегистрироваться",
     loginStaffPro: "Войти в Staff Pro",
     emailInput: "Эл. адрес",
     rememberMe: "Запомнить меня",
@@ -38,5 +40,9 @@ export const TRANSLATIONS_RU = {
   },
   changePasswordForm: {
     title: "Смена пароля",
+    oldPassword: "Старый пароль",
+    newPassword: "Новый пароль",
+    newPassword2: "Подтверждение нового пароля",
+    changePassword: "Изменить пароль",
   },
 };
