@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+import { media } from "../../../assets/media";
 import { rememberTab } from "../../../modules/seekers/slice";
 import { tabsList } from "../header/data";
 import { InvoicesHeader } from "../header/InvoicesHeader";
@@ -53,15 +54,24 @@ const Container = styled.div`
 `;
 
 const RightContainer = styled.div`
+  flex-direction: column;
+  ${media.desktop}
+  flex-direction: row;
   width: 100%;
   height: 100%;
+  display: flex;
 `;
 
 const ContentContainer = styled.div`
-  padding: 24px;
-  background: #f0f2f5;
-  height: 100vh;
-  margin: 124px 0px 0px 200px;
+  width: 100%;
+  padding-top: 148px;
+  ${media.desktop} {
+    padding: 148px 24px 40px;
+    background: #f0f2f5;
+    height: 100vh;
+    width: calc(100% - 248px);
+    margin-left: 200px;
+  }
 `;
 
 const Content = styled.div`
@@ -72,7 +82,7 @@ const Content = styled.div`
 const Tab = styled.div<{ active?: boolean }>`
   font-size: 14px;
   line-height: 22px;
-  padding: 11px 0px;
+  padding: 12px 0px;
   cursor: pointer;
   :not(:last-child) {
     margin-right: 32px;

@@ -8,7 +8,9 @@ export const LangSelect = () => {
     <div className="select">
       <Select value={i18n.language} onChange={(e) => i18n.changeLanguage(e.target.value)}>
         {languages.map((item) => (
-          <option value={item.value}>{item.label}</option>
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
         ))}
       </Select>
     </div>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { media } from "../../../assets/media";
 import { getCurrentUserSelector } from "../../../modules/authorisation/selectors";
 import { signOut } from "../../../modules/authorisation/slice";
 import { Breadcrumbs } from "../breadcrumbs/Breadcrumbs";
@@ -59,15 +60,18 @@ export const PageHeader: FC = ({ children }) => {
 };
 
 const Container = styled.div`
-  max-height: 125px;
+  width: calc(100% - 44px);
+
   padding: 11px 22px 0px;
   background-color: #ffff;
   position: fixed;
-  z-index: -1;
   flex-direction: column;
   display: flex;
-  right: 0;
-  width: calc(100vw - 261px);
+  ${media.desktop} {
+    max-height: 125px;
+    margin-left: 200px;
+    width: calc(100% - 243px);
+  }
 `;
 
 const Title = styled.div`

@@ -100,7 +100,7 @@ const Container = styled.div`
   background-color: #fff;
   ${media.desktop} {
     display: flex;
-    width: 14%;
+    width: 200px;
     height: calc(100vh - 40px);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
     padding-top: 40px;

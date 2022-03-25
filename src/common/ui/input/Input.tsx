@@ -17,9 +17,9 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
   };
   return (
     <Container>
-      <InputContainer>
+      <InputContainer error={params.error}>
         {params.withLabel ? <Label>{params.label}</Label> : undefined}
-        <Input {...params} type={type} ref={ref} error={params.error}></Input>
+        <Input {...params} type={type} ref={ref} error={params.error} />
         {params.type === "password" && (
           <Icon withLabel={params.withLabel} error={params.error} onClick={changeType}>
             <EyeIconNew type={type} />
@@ -40,10 +40,10 @@ const Container = styled.div`
   width: auto;
   max-width: 600px;
   cursor: pointer;
-  height: 80px;
+  height: 82px;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.div<{ error?: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,7 +60,6 @@ const Input = styled.input<{ error?: string }>`
   border-color: ${({ error }) => (error ? "#F5222D" : "#D9D9D9")};
   border-radius: 2px;
   box-shadow: ${({ error }) => (error ? "0px 0px 4px rgba(245, 34, 45, 0.5)" : "transparent")};
-  margin-bottom: ${({ error }) => (error ? "6px" : 0)};
   ::placeholder {
     color: #bfbfbf;
   }
@@ -73,8 +72,7 @@ const Icon = styled.div<{ withLabel?: boolean; error?: string }>`
   position: absolute;
   display: flex;
   right: 11px;
-  bottom: ${({ withLabel, error }) =>
-    withLabel ? `12px` : error !== "" && withLabel ? `0px` : "none"};
+  bottom: ${({ withLabel }) => (withLabel ? `12px` : "none")};
   margin-top: ${({ withLabel }) => (withLabel ? `17px` : `0px`)};
   cursor: pointer;
 `;
@@ -88,5 +86,5 @@ const Label = styled.div`
 const ErrorContainer = styled.div`
   position: absolute;
   bottom: 0;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../../assets/media";
 
 import { ChangePasswordForm } from "../form/ChangePasswordForm";
 import { EmployeeForm } from "../form/EmployeeForm";
@@ -30,12 +31,15 @@ export const Drawer = ({ visible, onClick, type }: Props) => {
 };
 const Container = styled.div<{ visible?: boolean }>`
   position: fixed;
-  right: ${({ visible }) => (visible ? "0" : "-50vw")};
+  right: ${({ visible }) => (visible ? "0" : "-100vw")};
   top: 0;
   bottom: 0;
   z-index: 1001;
   transition: 0.5s ease;
   width: 444px;
+  ${media.desktop} {
+    right: ${({ visible }) => (visible ? "0" : "-50vw")};
+  }
 `;
 
 const Menu = styled.div`
