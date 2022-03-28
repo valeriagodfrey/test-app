@@ -61,7 +61,7 @@ export const CustomSelect = ({ placeholder, type = "default", error, options, ..
 };
 
 const Container = styled.div`
-  height: 82px;
+  height: 75px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -185,5 +185,5 @@ const StylesLang: StylesConfig<IOption> = {
 const ErrorContainer = styled.div`
   position: absolute;
   bottom: 0;
-  margin-bottom: 24px;
+  margin-bottom: 15px;
 `;

@@ -8,10 +8,11 @@ interface Props {
   error?: string;
   checked?: boolean;
   onChange: (value: boolean) => void;
+  type?: string;
 }
-export const Checkbox: FC<Props> = ({ error, checked, onChange, children }) => {
+export const Checkbox: FC<Props> = ({ error, type, checked, onChange, children }) => {
   return (
-    <Container>
+    <Container type={type}>
       <CheckboxContainer>
         <CustomCheckbox checked={checked} onClick={(value) => onChange(!value)} error={error}>
           {checked ? (
@@ -32,9 +33,12 @@ export const Checkbox: FC<Props> = ({ error, checked, onChange, children }) => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ type?: string }>`
   display: flex;
+  position: relative;
+  height: ${({ type }) => (type === "reg" ? "67px" : "auto")};
   flex-direction: column;
+  margin-bottom: 14px;
 `;
 
 const CheckboxContainer = styled.div`
@@ -72,5 +76,7 @@ const Agreement = styled.div`
 `;
 
 const ErrorContainer = styled.div`
-  margin: 6px 0px 24px 21px;
+  margin: 0px 0px 0px 21px;
+  position: absolute;
+  bottom: 0;
 `;

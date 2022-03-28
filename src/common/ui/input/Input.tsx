@@ -16,7 +16,7 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
     setType(type === "password" ? "text" : "password");
   };
   return (
-    <Container>
+    <Container withLabel={params.withLabel}>
       <InputContainer error={params.error}>
         {params.withLabel ? <Label>{params.label}</Label> : undefined}
         <Input {...params} type={type} ref={ref} error={params.error} />
@@ -26,21 +26,21 @@ export const CustomInput = forwardRef<HTMLInputElement, InputProps>((params, ref
           </Icon>
         )}
       </InputContainer>
-      <ErrorContainer>
+      <ErrorContainer withLabel={params.withLabel} error={params.error}>
         <CustomError error={params.error} />
       </ErrorContainer>
     </Container>
   );
 });
 
-const Container = styled.div`
+const Container = styled.div<{ withLabel?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   width: auto;
   max-width: 600px;
   cursor: pointer;
-  height: 82px;
+  height: ${({ withLabel }) => (withLabel ? "82px" : "75px")};
 `;
 
 const InputContainer = styled.div<{ error?: string }>`
@@ -83,8 +83,8 @@ const Label = styled.div`
   margin-bottom: 2px;
 `;
 
-const ErrorContainer = styled.div`
+const ErrorContainer = styled.div<{ withLabel?: boolean; error?: string }>`
   position: absolute;
   bottom: 0;
-  margin-bottom: 24px;
+  margin-bottom: ${({ error, withLabel }) => (error && withLabel ? "0px" : "15px")};
 `;

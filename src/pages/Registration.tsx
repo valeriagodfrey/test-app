@@ -201,6 +201,7 @@ export const Registration = () => {
           control={control}
           render={(props) => (
             <Checkbox
+              type="reg"
               {...register("check", { required: true })}
               {...props}
               checked={props.field.value}
