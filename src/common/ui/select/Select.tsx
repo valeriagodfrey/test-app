@@ -15,6 +15,7 @@ import { IOption, months } from "./data";
 interface Props {
   placeholder?: string;
   error?: string;
+  name?: string;
   type?: "lang" | "default";
   options?: typeof months;
   onChange?: (

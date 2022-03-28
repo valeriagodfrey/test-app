@@ -8,6 +8,11 @@ for (let i = 2022; i > 1900; i = i - 1) {
   years.push({ value: i, label: `${i}` });
 }
 
+export const countOfNews: IOption[] = [];
+for (let i = 0; i < 16; i++) {
+  countOfNews.push({ value: i, label: `${i}` });
+}
+
 export const months: IOption[] = [
   { value: "Январь", label: "Январь" },
   { value: "Февраль", label: "Февраль" },

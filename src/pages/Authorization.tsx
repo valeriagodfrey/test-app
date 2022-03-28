@@ -15,7 +15,6 @@ import { CustomInput } from "../common/ui/input/Input";
 import { ILink } from "../common/ui/link/Link";
 import { getUsersSelector } from "../modules/authorisation/selectors";
 import { signIn } from "../modules/authorisation/slice";
-import { store } from "../core/redux/store";
 
 export interface AuthProps {
   email: string;
@@ -51,7 +50,7 @@ export const Authorization = () => {
     dispatch(signIn(data));
     handleAuth(data);
   };
-  console.log(store.getState().signIn);
+
   return (
     <Container>
       <Header />

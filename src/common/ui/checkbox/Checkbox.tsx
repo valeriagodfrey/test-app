@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { CheckIcon } from "../../../assets/icons/CheckIcon";
+import { media } from "../../../assets/media";
 import { CustomError } from "../error/Error";
 
 interface Props {
@@ -17,7 +18,7 @@ export const Checkbox: FC<Props> = ({ error, type, checked, onChange, children }
         <CustomCheckbox checked={checked} onClick={(value) => onChange(!value)} error={error}>
           {checked ? (
             <Icon>
-              <CheckIcon />{" "}
+              <CheckIcon />
             </Icon>
           ) : (
             ""
@@ -35,10 +36,13 @@ export const Checkbox: FC<Props> = ({ error, type, checked, onChange, children }
 
 const Container = styled.div<{ type?: string }>`
   display: flex;
-  position: relative;
-  height: ${({ type }) => (type === "reg" ? "67px" : "auto")};
   flex-direction: column;
   margin-bottom: 14px;
+  position: relative;
+  height: 85px;
+  ${media.desktop} {
+    height: ${({ type }) => (type === "reg" ? "67px" : "auto")};
+  }
 `;
 
 const CheckboxContainer = styled.div`
