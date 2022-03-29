@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 import { getNewsSelector } from "../../../modules/news/selector";
-import { addNews, deleteNews } from "../../../modules/news/slice";
+import { addNews, deleteAll, deleteNews } from "../../../modules/news/slice";
 import { Button } from "../button/Button";
 import { CustomInput } from "../input/Input";
 
@@ -33,13 +33,14 @@ export const AddNewsForm = () => {
     dispatch(addNews(data.news));
   };
 
+  // eslint-disable-next-line no-console
   console.log(newsList);
 
   return (
     <Container>
       <HeadTitle>Новости</HeadTitle>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <News>
+        <NewsBlock>
           {fields.map((item, index) => {
             return (
               <NewsContainer key={item.id}>
@@ -64,7 +65,7 @@ export const AddNewsForm = () => {
                 </Description>
                 <ButtonContainer styleType="secondary">
                   <Button styleType="secondary" type="button" onClick={() => remove(index)}>
-                    Delete
+                    Удалить
                   </Button>
                 </ButtonContainer>
               </NewsContainer>
@@ -80,20 +81,25 @@ export const AddNewsForm = () => {
               Добавить
             </Button>
           </ButtonContainer>
-        </News>
+        </NewsBlock>
       </Form>
       <NewsContent>
         {newsList.news.map((item, index) => (
           <ListContainer key={index}>
             <Block>
-              <Elem>Title: {item.title}</Elem>
-              <Elem>Description: {item.description}</Elem>
+              <Elem>Заголовок: {item.title}</Elem>
+              <Elem>Описание: {item.description}</Elem>
             </Block>
             <ButtonContainer>
-              <Button onClick={() => dispatch(deleteNews(item.id))}>Удалить</Button>
+              <Button styleType="secondary" onClick={() => dispatch(deleteNews(item.id))}>
+                Удалить
+              </Button>
             </ButtonContainer>
           </ListContainer>
         ))}
+        <ButtonContainer>
+          <Button onClick={() => dispatch(deleteAll())}>Очистить</Button>
+        </ButtonContainer>
       </NewsContent>
     </Container>
   );
@@ -115,7 +121,7 @@ const HeadTitle = styled.div`
 
 const Title = styled.div``;
 
-const News = styled.div`
+const NewsBlock = styled.div`
   width: 100%;
   justify-content: space-between;
 `;
