@@ -11,7 +11,7 @@ export const newsSlice = createSlice({
   initialState: initialStateNews,
   reducers: {
     addNews: (state, action) => {
-      state.news = action.payload;
+      state.news = state.news.concat(action.payload);
     },
     deleteNews: (state, action) => {
       state.news = state.news.filter((item) => item.id !== action.payload);

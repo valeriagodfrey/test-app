@@ -8,14 +8,19 @@ import { addNews, deleteNews } from "../../../modules/news/slice";
 import { Button } from "../button/Button";
 import { CustomInput } from "../input/Input";
 
+interface News {
+  id: string;
+  title: string;
+  description: string;
+}
 export interface NewsProps {
-  news: { id: string; title: string; description: string }[];
+  news: News[];
 }
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
 
-  const news = useSelector(getNewsSelector);
+  const newsList = useSelector(getNewsSelector);
 
   const { control, register, handleSubmit } = useForm<NewsProps>({
     defaultValues: { news: [{ id: "", title: "", description: "" }] },
@@ -27,6 +32,8 @@ export const AddNewsForm = () => {
     data.news.map((item) => (item.id = uuidv4()));
     dispatch(addNews(data.news));
   };
+
+  console.log(newsList);
 
   return (
     <Container>
@@ -76,7 +83,7 @@ export const AddNewsForm = () => {
         </News>
       </Form>
       <NewsContent>
-        {news.map((item, index) => (
+        {newsList.news.map((item, index) => (
           <ListContainer key={index}>
             <Block>
               <Elem>Title: {item.title}</Elem>
