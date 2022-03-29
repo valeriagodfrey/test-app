@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -19,6 +20,11 @@ export interface NewsProps {
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
+
+  const [name, setName] = useState("");
+  // const onChangeName: React.ChangeEventHandler<HTMLInputElement> = useDebouncedCallback((e) => {
+  //   setName(e.target.value);
+  // }, 800);
 
   const newsList = useSelector(getNewsSelector);
 
